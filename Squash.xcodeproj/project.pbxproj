@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B5D9BBE23CD1C270045B8D4 /* PostsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5D9BBD23CD1C270045B8D4 /* PostsList.swift */; };
 		8B6A314123CC2672004C34DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A314023CC2672004C34DD /* AppDelegate.swift */; };
 		8B6A314323CC2672004C34DD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A314223CC2672004C34DD /* SceneDelegate.swift */; };
 		8B6A314623CC2672004C34DD /* Squash.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A314423CC2672004C34DD /* Squash.xcdatamodeld */; };
@@ -20,7 +21,7 @@
 		8B6A317A23CC28B4004C34DD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A317923CC28B4004C34DD /* Post.swift */; };
 		8B6A317C23CC34B0004C34DD /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A317B23CC34B0004C34DD /* Listing.swift */; };
 		8B6A317F23CC360D004C34DD /* SquashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A317E23CC360D004C34DD /* SquashService.swift */; };
-		8B6A318123CC3ECC004C34DD /* ListingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A318023CC3ECC004C34DD /* ListingViewModel.swift */; };
+		8B6A318123CC3ECC004C34DD /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A318023CC3ECC004C34DD /* MainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B5D9BBD23CD1C270045B8D4 /* PostsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsList.swift; sourceTree = "<group>"; };
 		8B6A313D23CC2672004C34DD /* Squash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Squash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B6A314023CC2672004C34DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B6A314223CC2672004C34DD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,7 +62,7 @@
 		8B6A317923CC28B4004C34DD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		8B6A317B23CC34B0004C34DD /* Listing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
 		8B6A317E23CC360D004C34DD /* SquashService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquashService.swift; sourceTree = "<group>"; };
-		8B6A318023CC3ECC004C34DD /* ListingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingViewModel.swift; sourceTree = "<group>"; };
+		8B6A318023CC3ECC004C34DD /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				8B6A317723CC2871004C34DD /* PostRow.swift */,
+				8B5D9BBD23CD1C270045B8D4 /* PostsList.swift */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 			children = (
 				8B6A317D23CC35F1004C34DD /* DataTypes */,
 				8B6A317E23CC360D004C34DD /* SquashService.swift */,
+				8B6A318023CC3ECC004C34DD /* MainViewModel.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -173,7 +177,6 @@
 			children = (
 				8B6A317923CC28B4004C34DD /* Post.swift */,
 				8B6A317B23CC34B0004C34DD /* Listing.swift */,
-				8B6A318023CC3ECC004C34DD /* ListingViewModel.swift */,
 			);
 			path = DataTypes;
 			sourceTree = "<group>";
@@ -310,11 +313,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B6A314623CC2672004C34DD /* Squash.xcdatamodeld in Sources */,
+				8B5D9BBE23CD1C270045B8D4 /* PostsList.swift in Sources */,
 				8B6A317C23CC34B0004C34DD /* Listing.swift in Sources */,
 				8B6A314123CC2672004C34DD /* AppDelegate.swift in Sources */,
 				8B6A317823CC2871004C34DD /* PostRow.swift in Sources */,
 				8B6A317F23CC360D004C34DD /* SquashService.swift in Sources */,
-				8B6A318123CC3ECC004C34DD /* ListingViewModel.swift in Sources */,
+				8B6A318123CC3ECC004C34DD /* MainViewModel.swift in Sources */,
 				8B6A317A23CC28B4004C34DD /* Post.swift in Sources */,
 				8B6A314823CC2672004C34DD /* ContentView.swift in Sources */,
 				8B6A314323CC2672004C34DD /* SceneDelegate.swift in Sources */,

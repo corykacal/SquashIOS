@@ -9,11 +9,11 @@
 import Foundation
 import SwiftUI
 
-struct Post {
+struct Post: Identifiable {
     var contents: String
     var subject: String
     var imageUUID: String
-    var postID: Int
+    var id: Int
     var uniqueCommenter: Int
     var opUUID: String
     var reply_to: Int
@@ -33,7 +33,7 @@ extension Post: Decodable {
         case contents = "contents"
         case subject = "subject"
         case imageUUID = "imageuuid"
-        case postID = "post_number"
+        case id = "post_number"
         case uniqueCommenter = "unique_commenter"
         case opUUID = "opuuid"
         case reply_to = "reply_to"
@@ -54,7 +54,7 @@ extension Post: Decodable {
         contents = try values.decode(String.self, forKey: .contents)
         subject = try values.decode(String.self, forKey: .subject)
         imageUUID = try values.decode(String.self, forKey: .imageUUID)
-        postID = try values.decode(Int.self, forKey: .postID)
+        id = try values.decode(Int.self, forKey: .id)
         uniqueCommenter = try values.decode(Int.self, forKey: .uniqueCommenter)
         opUUID = try values.decode(String.self, forKey: .opUUID)
         reply_to = try values.decode(Int.self, forKey: .reply_to)
