@@ -19,7 +19,7 @@ struct PostRow: View {
             VStack(alignment: .leading) {
                 Text(post.contents)
                     .font(.headline)
-                Text(post.subject)
+                Text(String(post.comment_count))
                     .font(.subheadline)
                     .foregroundColor(Color.gray)
             }
@@ -31,7 +31,7 @@ struct PostRow: View {
 #if DEBUG
 struct PostRow_Previews: PreviewProvider {
     static var previews: some View {
-        PostRow(post: Post(contents: "test post", subject: "Memes", imageUUID: "", id: 1, uniqueCommenter: 0, opUUID: "", reply_to: 0, comment_count: 10, decision: false, up: 1, down: 3, timeStamp: TimeInterval(), subject_color: 1231222, subject_svg: "", subject_image: ""))
+        PostRow(post: Post(contents: "test post", id: 1, comment_count: 10))
     }
 }
 #endif

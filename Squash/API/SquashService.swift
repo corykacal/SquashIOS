@@ -16,15 +16,28 @@ class SquashService {
     init(session: URLSession = .shared, decoder: JSONDecoder = .init()) {
         self.session = session
         self.decoder = decoder
-        self.base_url = "ec2-18-218-80-162.us-east-2.compute.amazon.aws.com"
+        self.base_url = "ec2-18-218-80-162.us-east-2.compute.amazonaws.com"
     }
     
     func getRecentPosts(for opuuid: String, number_of_posts: Int, page_number: Int, subject: String, latitude: Double, longitude: Double, completion: @escaping (Result<[Post], Error>) -> Void) {
         
-        let endpoint = "/api/recent/"
         
-        guard let url = URL(string: self.base_url + endpoint) else {
-            preconditionFailure("idk how this works lmao")
+        var components = URLComponents()
+        components.scheme = "http"
+        components.host = self.base_url
+        components.port = 5000
+        components.path = "/api/recent/"
+        components.queryItems = [
+            URLQueryItem(name: "opuuid", value: opuuid),
+            URLQueryItem(name: "number_of_posts", value: String(number_of_posts)),
+            URLQueryItem(name: "page_number", value: String(page_number)),
+            URLQueryItem(name: "subject", value: subject),
+            URLQueryItem(name: "latitude", value: String(latitude)),
+            URLQueryItem(name: "longitude", value: String(longitude)),
+        ]
+        
+        guard let url = components.url else {
+            preconditionFailure("shit broke")
         }
         
         session.dataTask(with: url) { [weak self] data, _, error in

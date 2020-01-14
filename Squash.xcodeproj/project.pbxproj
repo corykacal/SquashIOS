@@ -43,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		8B5D9BBD23CD1C270045B8D4 /* PostsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsList.swift; sourceTree = "<group>"; };
+		8B5D9BBF23CD21680045B8D4 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8B6A313D23CC2672004C34DD /* Squash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Squash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B6A314023CC2672004C34DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B6A314223CC2672004C34DD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +124,7 @@
 				8B6A315123CC2676004C34DD /* Info.plist */,
 				8B6A314423CC2672004C34DD /* Squash.xcdatamodeld */,
 				8B6A314B23CC2676004C34DD /* Preview Content */,
+				8B5D9BBF23CD21680045B8D4 /* MyPlayground.playground */,
 			);
 			path = Squash;
 			sourceTree = "<group>";

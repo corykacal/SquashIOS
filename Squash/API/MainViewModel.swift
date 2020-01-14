@@ -21,7 +21,7 @@ class MainViewModel: ObservableObject {
     }
     
     func fetchPosts(opUUID: String, latitude: Double, longitude: Double, number_of_posts: Int, page_number: Int) {
-        service.getRecentPosts(for: <#T##String#>, number_of_posts: <#T##Int#>, page_number: <#T##Int#>, subject: <#T##String#>, latitude: <#T##Double#>, longitude: <#T##Double#>) { [weak self] result in
+        service.getRecentPosts(for: opUUID, number_of_posts: number_of_posts, page_number: page_number, subject: "All", latitude: latitude, longitude: longitude) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let posts):
