@@ -12,18 +12,29 @@ struct PostRow: View {
     let post: Post
     
     var body: some View {
-        HStack {
+        VStack {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(post.contents)
+                        .font(.subheadline)
+                        .foregroundColor(.primary)
+                        .lineLimit(4)
+                }
+                .layoutPriority(100)
+
+                Spacer()
+            }
+            .padding()
+            
             Image(systemName: "photo.fill")
                 .font(.largeTitle)
-            
-            VStack(alignment: .leading) {
-                Text(post.contents)
-                    .font(.headline)
-                Text(String(post.comment_count))
-                    .font(.subheadline)
-                    .foregroundColor(Color.gray)
-            }
         }
+        .cornerRadius(10)
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.9), lineWidth: 1)
+        ).background(RoundedRectangle(cornerRadius: 10).fill(Color.yellow))
+        .padding([.top, .horizontal])
     }
 }
 

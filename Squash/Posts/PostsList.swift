@@ -16,22 +16,16 @@ struct PostsList: View {
     var body: some View {
         NavigationView {
             List {
-                TextField("Current Subject", text: self.$subject) {
-                    self.fetchPosts()
-                }
-            
                 ForEach(mainViewModel.posts) { post in
                     PostRow(post: post)
-            
                 }
             }
-            .navigationBarTitle(Text("Subject"))
         }
         .onAppear(perform: fetchPosts)
     }
     
     private func fetchPosts() {
-        mainViewModel.fetchPosts(opUUID: "meme", latitude: 30.285610, longitude: -97.737204, number_of_posts: 4, page_number: 0)
+        mainViewModel.fetchPosts(opUUID: "meme", latitude: 30.285610, longitude: -97.737204, number_of_posts: 10, page_number: 0)
     }
 }
 
