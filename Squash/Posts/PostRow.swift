@@ -15,10 +15,14 @@ struct PostRow: View {
         VStack {
             HStack {
                 VStack(alignment: .leading) {
+                    post.subject.map({
+                        Text($0)
+                    })
+                    
+
                     Text(post.contents)
                         .font(.subheadline)
                         .foregroundColor(.primary)
-                        .lineLimit(4)
                 }
                 .layoutPriority(100)
 
@@ -28,6 +32,13 @@ struct PostRow: View {
             
             Image(systemName: "photo.fill")
                 .font(.largeTitle)
+            
+        
+            HStack {
+                Text(String(post.id))
+                
+                Spacer()
+            }
         }
         .cornerRadius(10)
         .overlay(
@@ -35,10 +46,13 @@ struct PostRow: View {
                 .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.9), lineWidth: 1)
         ).background(RoundedRectangle(cornerRadius: 10).fill(Color.yellow))
         .padding([.top, .horizontal])
+        
+       
     }
 }
 
 
+/*
 #if DEBUG
 struct PostRow_Previews: PreviewProvider {
     static var previews: some View {
@@ -46,3 +60,4 @@ struct PostRow_Previews: PreviewProvider {
     }
 }
 #endif
+*/
