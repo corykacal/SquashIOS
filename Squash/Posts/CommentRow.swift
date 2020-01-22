@@ -1,8 +1,8 @@
 //
-//  PostRow.swift
+//  CommentRow.swift
 //  Squash
 //
-//  Created by Cory Kacal on 1/12/20.
+//  Created by Cory Kacal on 1/21/20.
 //  Copyright © 2020 Cory Kacal. All rights reserved.
 //
 
@@ -10,18 +10,13 @@ import SwiftUI
 
 
 
-struct PostRow: View {
+struct CommentRow: View {
     let post: Post
     
     var body: some View {
         VStack {
             HStack {
                 VStack(alignment: .leading) {
-                    post.subject.map({
-                        Text($0)
-                    })
-                    
-
                     Text(post.contents)
                         .font(.subheadline)
                         .foregroundColor(.primary)
@@ -31,10 +26,6 @@ struct PostRow: View {
                 Spacer()
             }
             .padding()
-            
-            Image(systemName: "photo.fill")
-                .font(.largeTitle)
-            
         
             HStack {
                 Text(String(post.id))
@@ -47,7 +38,7 @@ struct PostRow: View {
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.9), lineWidth: 1)
         ).background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
-        .padding([.top, .horizontal], 5)
+        .padding([.top, .horizontal])
         
        
     }

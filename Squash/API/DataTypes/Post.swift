@@ -12,7 +12,6 @@ import SwiftUI
 struct Post: Identifiable {
     var contents: String
     var id: Int
-    var comment_count: Int
     var timestamp: String
     var subject: String?
 }
@@ -21,7 +20,6 @@ extension Post: Decodable {
     enum CodingKeys: String, CodingKey {
         case contents = "contents"
         case id = "post_number"
-        case comment_count = "comment_count"
         case timestamp = "timestamp"
         case subject = "subject"
     }
@@ -32,7 +30,6 @@ extension Post: Decodable {
 
         contents = try values.decode(String.self, forKey: .contents)
         id = try values.decode(Int.self, forKey: .id)
-        comment_count = try values.decode(Int.self, forKey: .comment_count)
         timestamp = try values.decode(String.self, forKey: .timestamp)
         subject = try values.decodeIfPresent(String.self, forKey: .subject)
     }

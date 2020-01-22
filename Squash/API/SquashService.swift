@@ -54,4 +54,39 @@ class SquashService {
             }
         }.resume()
     }
+    
+    
+    func getComments(for opuuid: String, postNumber: Int, latitude: Double, longitude: Double, completion: @escaping (Result<[Post], Error>) -> Void) {
+        
+        
+        var components = URLComponents()
+        components.scheme = "http"
+        components.host = self.base_url
+        components.port = 5000
+        components.path = "/api/replies/"
+        components.queryItems = [
+            URLQueryItem(name: "opuuid", value: opuuid),
+            URLQueryItem(name: "post_number", value: String(postNumber)),
+            URLQueryItem(name: "latitude", value: String(latitude)),
+            URLQueryItem(name: "longitude", value: String(longitude))
+        ]
+        
+        guard let url = components.url else {
+            preconditionFailure("shit broke")
+        }
+        
+        session.dataTask(with: url) { [weak self] data, _, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                do {
+                    let data = data ?? Data()
+                    let response = try self?.decoder.decode(Listing.self, from: data)
+                    completion(.success(response?.posts ?? []))
+                } catch {
+                    completion(.failure(error))
+                }
+            }
+        }.resume()
+    }
 }
