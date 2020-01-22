@@ -14,6 +14,8 @@ import SwiftUI
 class MainViewModel: ObservableObject {
     let service: SquashService
     
+    
+    @Published var showFullScreen = false
     @Published var posts = [Post]()
     @Published var comments = [Post]()
     

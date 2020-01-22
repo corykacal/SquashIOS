@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let service = SquashService()
             let mainViewModel = MainViewModel(service: service)
             
-            window.rootViewController = UIHostingController(rootView: PostsList(mainViewModel: mainViewModel))
+            window.rootViewController = UIHostingController(rootView: ContentView(mainViewModel: mainViewModel))
             self.window = window
             window.makeKeyAndVisible()
         }

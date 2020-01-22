@@ -20,7 +20,9 @@ struct SinglePost: View {
                 ForEach(mainViewModel.comments) { post in
                     CommentRow(post: post)
                 }.listRowBackground(Color.clear)
-            }                    .onAppear(perform: fetchComments)
+            }.onAppear(perform: fetchComments)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+
 
     }
     

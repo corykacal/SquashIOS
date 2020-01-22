@@ -26,6 +26,7 @@
 		8BEC48B323D7C4FD001CF80A /* SinglePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEC48B223D7C4FD001CF80A /* SinglePost.swift */; };
 		8BEC48B523D7C9D9001CF80A /* CommentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEC48B423D7C9D9001CF80A /* CommentRow.swift */; };
 		8BEC48B823D7D0E2001CF80A /* NewPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEC48B723D7D0E2001CF80A /* NewPost.swift */; };
+		8BEC48BA23D7F1D3001CF80A /* FullScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEC48B923D7F1D3001CF80A /* FullScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		8BEC48B223D7C4FD001CF80A /* SinglePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePost.swift; sourceTree = "<group>"; };
 		8BEC48B423D7C9D9001CF80A /* CommentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRow.swift; sourceTree = "<group>"; };
 		8BEC48B723D7D0E2001CF80A /* NewPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPost.swift; sourceTree = "<group>"; };
+		8BEC48B923D7F1D3001CF80A /* FullScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				8B6A314023CC2672004C34DD /* AppDelegate.swift */,
 				8B6A314223CC2672004C34DD /* SceneDelegate.swift */,
 				8B6A314723CC2672004C34DD /* ContentView.swift */,
+				8BEC48B923D7F1D3001CF80A /* FullScreen.swift */,
 				8B6A314923CC2676004C34DD /* Assets.xcassets */,
 				8B6A314E23CC2676004C34DD /* LaunchScreen.storyboard */,
 				8B6A315123CC2676004C34DD /* Info.plist */,
@@ -344,6 +347,7 @@
 				8B6A317F23CC360D004C34DD /* SquashService.swift in Sources */,
 				8B6A318123CC3ECC004C34DD /* MainViewModel.swift in Sources */,
 				8B6A317A23CC28B4004C34DD /* Post.swift in Sources */,
+				8BEC48BA23D7F1D3001CF80A /* FullScreen.swift in Sources */,
 				8B6A314823CC2672004C34DD /* ContentView.swift in Sources */,
 				8B5D9BC223CD557C0045B8D4 /* CardView.swift in Sources */,
 				8B6A314323CC2672004C34DD /* SceneDelegate.swift in Sources */,

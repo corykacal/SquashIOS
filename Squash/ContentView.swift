@@ -10,33 +10,39 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var selection = 0
+    
+    @ObservedObject var mainViewModel: MainViewModel
+
  
     var body: some View {
-        TabView(selection: $selection){
-            Text("First Vi")
-                .font(.title)
-                .tabItem {
-                    VStack {
-                        Image("first")
-                        Text("First")
+            TabView(selection: $selection){
+                PostsList(mainViewModel: mainViewModel)
+                    .tabItem {
+                        VStack {
+                            Image("first")
+                            Text("Posts")
+                        }
                     }
-                }
-                .tag(0)
-            Text("Second View")
-                .font(.title)
-                .tabItem {
-                    VStack {
-                        Image("second")
-                        Text("Second")
+                    .tag(0)
+                Text("Second View")
+                    .font(.title)
+                    .tabItem {
+                        VStack {
+                            Image("second")
+                            Text("Profile")
+                        }
                     }
-                }
-                .tag(1)
-        }
+                    .tag(1)
+        
+            }
     }
 }
 
+/*
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+*/
+
