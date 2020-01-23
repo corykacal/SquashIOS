@@ -22,6 +22,7 @@ struct SinglePost: View {
                 }.listRowBackground(Color.clear)
             }.onAppear(perform: fetchComments)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .layoutPriority(10)
 
 
     }

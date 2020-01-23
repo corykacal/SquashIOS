@@ -14,6 +14,7 @@ struct Post: Identifiable {
     var id: Int
     var timestamp: String
     var subject: String?
+    var imageuuid: String?
 }
 
 extension Post: Decodable {
@@ -22,15 +23,16 @@ extension Post: Decodable {
         case id = "post_number"
         case timestamp = "timestamp"
         case subject = "subject"
+        case imageuuid = "imageuuid"
     }
     
     init(from decoder: Decoder) throws {
-        print("made it here")
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
         contents = try values.decode(String.self, forKey: .contents)
         id = try values.decode(Int.self, forKey: .id)
         timestamp = try values.decode(String.self, forKey: .timestamp)
+        imageuuid = try values.decodeIfPresent(String.self, forKey: .imageuuid)
         subject = try values.decodeIfPresent(String.self, forKey: .subject)
     }
 }

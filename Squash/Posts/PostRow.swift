@@ -32,8 +32,10 @@ struct PostRow: View {
             }
             .padding()
             
-            Image(systemName: "photo.fill")
-                .font(.largeTitle)
+            post.imageuuid.map({_ in
+                Image(systemName: "photo.fill")
+                    .font(.largeTitle)
+            })
             
         
             HStack {

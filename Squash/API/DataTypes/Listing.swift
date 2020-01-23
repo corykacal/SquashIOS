@@ -20,8 +20,6 @@ extension Listing: Decodable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        print(values.allKeys)
         posts = try values.decode([Post].self, forKey: .posts)
-        print(posts)
     }
 }
