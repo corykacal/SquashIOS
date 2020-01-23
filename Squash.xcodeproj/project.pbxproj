@@ -10,6 +10,7 @@
 		29543CB4FFF9516FACBDE6A9 /* Pods_Squash_SquashUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE61E62F5C1869CECA457CA /* Pods_Squash_SquashUITests.framework */; };
 		7EC9B4119EF140219459224D /* Pods_SquashTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14AAA698EB69AAA10CBA744 /* Pods_SquashTests.framework */; };
 		8B3DC08123D95A9100131AB7 /* PhotoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3DC08023D95A9100131AB7 /* PhotoLoader.swift */; };
+		8B3DC08323DA59F800131AB7 /* FirebaseImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3DC08223DA59F800131AB7 /* FirebaseImage.swift */; };
 		8B5D9BBE23CD1C270045B8D4 /* PostsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5D9BBD23CD1C270045B8D4 /* PostsList.swift */; };
 		8B5D9BC223CD557C0045B8D4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5D9BC123CD557C0045B8D4 /* CardView.swift */; };
 		8B6A314123CC2672004C34DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A314023CC2672004C34DD /* AppDelegate.swift */; };
@@ -57,6 +58,7 @@
 		4274714D930D6C3513561866 /* Pods-Squash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Squash.release.xcconfig"; path = "Target Support Files/Pods-Squash/Pods-Squash.release.xcconfig"; sourceTree = "<group>"; };
 		5CE61E62F5C1869CECA457CA /* Pods_Squash_SquashUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Squash_SquashUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B3DC08023D95A9100131AB7 /* PhotoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLoader.swift; sourceTree = "<group>"; };
+		8B3DC08223DA59F800131AB7 /* FirebaseImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseImage.swift; sourceTree = "<group>"; };
 		8B5D9BBD23CD1C270045B8D4 /* PostsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsList.swift; sourceTree = "<group>"; };
 		8B5D9BBF23CD21680045B8D4 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8B5D9BC123CD557C0045B8D4 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				8B3DC08023D95A9100131AB7 /* PhotoLoader.swift */,
+				8B3DC08223DA59F800131AB7 /* FirebaseImage.swift */,
 			);
 			path = Photos;
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 				8B6A317F23CC360D004C34DD /* SquashService.swift in Sources */,
 				8B6A318123CC3ECC004C34DD /* MainViewModel.swift in Sources */,
 				8B6A317A23CC28B4004C34DD /* Post.swift in Sources */,
+				8B3DC08323DA59F800131AB7 /* FirebaseImage.swift in Sources */,
 				8BEC48BA23D7F1D3001CF80A /* FullScreen.swift in Sources */,
 				8B6A314823CC2672004C34DD /* ContentView.swift in Sources */,
 				8B5D9BC223CD557C0045B8D4 /* CardView.swift in Sources */,

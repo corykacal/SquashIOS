@@ -30,25 +30,12 @@ import SwiftUI
  }
  */
 
-let placeholder = UIImage(systemName: "photo.fill")!
 
 struct PostRow: View {
-    
-    init(post: Post) {
-        self.post = post
-        self.photoLoader = PhotoLoader(post.imageuuid)
-    }
-    
     let post: Post
     
-    @ObservedObject private var photoLoader: PhotoLoader
-    
-    var image: UIImage? {
-        photoLoader.data.flatMap(UIImage.init)
-    }
-    
     var body: some View {
-        VStack {
+        VStack(spacing: 10) {
             HStack {
                 VStack(alignment: .leading) {
                     self.post.subject.map({
@@ -65,24 +52,20 @@ struct PostRow: View {
                 Spacer()
             }
             .padding()
-            
-            self.post.imageuuid.map({_ in
-                Image(uiImage: image ?? placeholder)
-                    .resizable()
-                    .frame(maxWidth: .infinity, maxHeight: 50, alignment: .center)
+                        
+            HStack {
+                self.post.imageuuid.map({
+                    FirebaseImage(id: $0)
+                        .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 60, idealHeight: 130, maxHeight: 200, alignment: .center)
+                        .clipShape(
+                        RoundedRectangle(cornerRadius: 10)
+                    )
+                    .padding([.horizontal], 20)
 
-                    .aspectRatio(contentMode: .fit)
-                    .cornerRadius(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.9), lineWidth: 1)
-                ).background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
-
-            })
+                })
+            }
 
 
-
-            
         
             HStack {
                 Text(String(self.post.id))
@@ -102,12 +85,11 @@ struct PostRow: View {
 }
 
 
-/*
 #if DEBUG
 struct PostRow_Previews: PreviewProvider {
     static var previews: some View {
-        PostRow(post: Post(contents: "test post", id: 1, comment_count: 10))
+        PostRow(post: Post(contents: "test post", id: 1
+            , timestamp: "10 s", imageuuid: "43"))
     }
 }
 #endif
-*/

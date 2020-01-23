@@ -15,7 +15,7 @@ import FirebaseStorage
 
 final class PhotoLoader : ObservableObject {
     let didChange = PassthroughSubject<Data?, Never>()
-    var data: Data? = nil {
+    @Published var data: Data? = nil {
         didSet { didChange.send(data) }
     }
 
@@ -26,11 +26,10 @@ final class PhotoLoader : ObservableObject {
         let ref = storage.reference().child(url)
         ref.getData(maxSize: 1 * 1024 * 1024) { data, error in
             if let error = error {
-                print("error")
+                print(error)
             }
 
             DispatchQueue.main.async {
-                print("found le shit")
                 self.data = data
             }
         }
