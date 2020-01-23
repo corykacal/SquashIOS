@@ -65,6 +65,7 @@ struct PostsList: View {
     }
 }
 
+/*
 #if DEBUG
 struct PostsList_Previews: PreviewProvider {
     static var previews: some View {
@@ -72,3 +73,4 @@ struct PostsList_Previews: PreviewProvider {
     }
 }
 #endif
+*/

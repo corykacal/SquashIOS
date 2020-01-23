@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -20,16 +21,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
 
-        // Use a UIHostingController as window root view controller.
-        if let windowScene = scene as? UIWindowScene {
-            UITableView.appearance().separatorColor = .clear
-            let window = UIWindow(windowScene: windowScene)
-            let service = SquashService()
-            let mainViewModel = MainViewModel(service: service)
-            
-            window.rootViewController = UIHostingController(rootView: ContentView(mainViewModel: mainViewModel))
-            self.window = window
-            window.makeKeyAndVisible()
+        Auth.auth().signInAnonymously() { (authResult, error) in
+            // Use a UIHostingController as window root view controller.
+            if let windowScene = scene as? UIWindowScene {
+                UITableView.appearance().separatorColor = .clear
+                let window = UIWindow(windowScene: windowScene)
+                let service = SquashService()
+                let mainViewModel = MainViewModel(service: service, user: authResult)
+                
+                window.rootViewController = UIHostingController(rootView: ContentView(mainViewModel: mainViewModel))
+                self.window = window
+                window.makeKeyAndVisible()
+            }
+
         }
     }
 

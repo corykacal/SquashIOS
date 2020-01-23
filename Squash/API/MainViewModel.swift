@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 import SwiftUI
+import Firebase
 
 
 class MainViewModel: ObservableObject {
@@ -18,9 +19,15 @@ class MainViewModel: ObservableObject {
     @Published var showFullScreen = false
     @Published var posts = [Post]()
     @Published var comments = [Post]()
+    @Published var user = Auth.auth().currentUser
     
-    init(service: SquashService) {
+    init(service: SquashService, user: User?) {
         self.service = service
+        self.user = user
+    }
+    
+    func getUid() -> String? {
+        return self.user?.uid
     }
     
     func fetchPosts(opUUID: String, latitude: Double, longitude: Double, number_of_posts: Int, page_number: Int) {
