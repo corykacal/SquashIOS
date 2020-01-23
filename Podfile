@@ -12,6 +12,7 @@ target 'Squash' do
   pod 'Firebase/Core', '~> 4.13.0'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
+  pod 'Firebase/Storage'
   pod 'Firebase/Analytics'
   pod 'GTMSessionFetcher'
 

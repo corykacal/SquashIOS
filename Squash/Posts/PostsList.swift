@@ -27,7 +27,6 @@ struct PostsList: View {
                             }
                         }.listRowBackground(Color.clear)
                     }.background(Color.clear)
-                
                 VStack {
                     Spacer()
                     HStack {

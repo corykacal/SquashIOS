@@ -18,11 +18,7 @@ struct SinglePost: View {
     var body: some View {
             List {
                 PostRow(post: self.post)
-                
-                mainViewModel.getUid().map({
-                    Text($0)
-                })
-                
+
                 ForEach(mainViewModel.comments) { post in
                     CommentRow(post: post)
                 }.listRowBackground(Color.clear)
