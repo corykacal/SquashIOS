@@ -22,9 +22,13 @@ struct PostsList: View {
                 
                     List {
                         ForEach(mainViewModel.posts) { post in
-                            NavigationLink(destination: SinglePost(post: post, mainViewModel: self.mainViewModel)) {
-                                PostRow(post: post)
+                            ZStack {
+                                PostRow(post: post, fullImage: false)
+                                NavigationLink(destination: SinglePost(post: post, mainViewModel: self.mainViewModel)) {
+                                    EmptyView()
+                                }
                             }
+                           
                         }.listRowBackground(Color.clear)
                     }.background(Color.clear)
                 VStack {

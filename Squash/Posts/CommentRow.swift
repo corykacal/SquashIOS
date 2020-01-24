@@ -13,6 +13,22 @@ import SwiftUI
 struct CommentRow: View {
     let post: Post
     
+    private func getTimeSince(date: Date) -> String {
+        let seconds = Int(abs(date.timeIntervalSinceNow))
+        let minutes = (seconds/60)
+        let hours = (minutes/60)
+        let days = (hours/24)
+        let possibleTickers = [["d", days],  ["h", hours], ["m", minutes], ["s", seconds]]
+        for pair in possibleTickers {
+            let ticker = pair[0] as! String
+            let value = pair[1] as! Int
+            if(value>0) {
+                return String(value) + " " + ticker
+            }
+        }
+        return "0 s"
+    }
+    
     var body: some View {
         VStack {
             HStack {
@@ -27,8 +43,12 @@ struct CommentRow: View {
             }
             .padding()
         
+            //HStack to move the timestamp and comment count to the left using the trailing Spacer()
             HStack {
-                Text(String(post.id))
+                Text(getTimeSince(date: self.post.timestamp))
+                    .font(.system(size: 13))
+                    .padding(.bottom, 5)
+                    .padding(.horizontal, 7)
                 
                 Spacer()
             }

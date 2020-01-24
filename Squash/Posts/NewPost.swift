@@ -14,6 +14,7 @@ struct NewPost: View {
 
     var body: some View {
         VStack {
+            
             TextField("Whats on your mind?", text: $content)
                 .cornerRadius(10)
                 .overlay(
@@ -30,7 +31,8 @@ struct NewPost: View {
                     .padding(.all, 50)
 
                     .foregroundColor(Color.white)
-            }).background(RoundedRectangle(cornerRadius: 10).fill(Color.yellow)                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 60, alignment: .topLeading))
+            }).background(RoundedRectangle(cornerRadius: 10).fill(Color.yellow)
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 60, alignment: .topLeading))
             
             Spacer()
         }.padding(.all, 10)

@@ -11,30 +11,9 @@ import SwiftSVG
 import UIKit
 
 
-/*
- let placeholder = UIImage(named: "placeholder.jpg")!
-
- struct FirebaseImage : View {
-
-     init(id: String) {
-         self.imageLoader = Loader(id)
-     }
-
-     @ObjectBinding private var imageLoader : Loader
-
-     var image: UIImage? {
-         imageLoader.data.flatMap(UIImage.init)
-     }
-
-     var body: some View {
-         Image(uiImage: image ?? placeholder)
-     }
- }
- */
-
-
 struct PostRow: View {
     let post: Post
+    let fullImage: Bool
     
     let svg = SVGView(SVGNamed: "Arrow-down")
     
@@ -56,24 +35,31 @@ struct PostRow: View {
     
     
     var body: some View {
+        //Entire post stack
         VStack(spacing: 10) {
+            
+            //HStack to move content to the left using the trailing Spacer()
             HStack {
+                //VStack to stack the subject ontop of the contents
                 VStack(alignment: .leading) {
                     if self.post.subject != nil {
+                        //ZStack to place the subject ontop of the rectangle
                         ZStack(alignment: .leading) {
                             Rectangle()
                                 .size(width: 1000, height: 17)
                                 .fill(Color.yellow)
                                 .padding(.horizontal, -20)
                                 .padding(.top, -5)
+                            //post subject
                             Text(self.post.subject!.uppercased())
                                 .bold()
-                                .font(.system(size: 11))
+                                .font(.system(size: 13))
                                 .padding(.top, -5)
                                 .foregroundColor(Color.white)
                         }.padding(.bottom, -7)
                     }
 
+                    //post contents
                     Text(self.post.contents)
                         .font(.subheadline)
                         .foregroundColor(.primary)
@@ -87,26 +73,39 @@ struct PostRow: View {
             .padding(.horizontal, 6)
             
                         
-            HStack {
-                self.post.imageuuid.map({
-                    FirebaseImage(id: $0)
-                        .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 60, idealHeight: 130, maxHeight: 200, alignment: .center)
+            //Image attatched to the post
+            if self.post.imageuuid != nil {
+                //display full image for single post or not
+                if(fullImage) {
+                    FirebaseImage(id: self.post.imageuuid!)
                         .clipShape(
                         RoundedRectangle(cornerRadius: 10)
                     )
                     .padding([.horizontal], 20)
-
-                })
+                } else {
+                    FirebaseImage(id: self.post.imageuuid!)
+                        .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 130, idealHeight: 130, maxHeight:   200, alignment: .center)
+                        .clipShape(
+                        RoundedRectangle(cornerRadius: 10)
+                    )
+                    .padding([.horizontal], 20)
+                }
             }
+            
 
 
-        
+            //HStack to move the timestamp and comment count to the left using the trailing Spacer()
             HStack {
                 Text(getTimeSince(date: self.post.timestamp))
                     .font(.system(size: 13))
                     .padding(.bottom, 5)
                     .padding(.horizontal, 7)
                 
+                if self.post.commentCount != nil {
+                    Text(String(self.post.commentCount!))
+                        .font(.system(size: 13))
+                        .padding(.bottom, 5)
+                }
                 
                 Spacer()
             }
@@ -127,7 +126,7 @@ struct PostRow: View {
 struct PostRow_Previews: PreviewProvider {
     static var previews: some View {
         PostRow(post: Post(contents: "test post", id: 1
-            , timestamp: Date(), imageuuid: "43"))
+            , timestamp: Date(), imageuuid: "43"), fullImage: false)
     }
 }
 #endif

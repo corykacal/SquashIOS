@@ -15,6 +15,7 @@ struct Post: Identifiable {
     var timestamp: Date
     var subject: String?
     var imageuuid: String?
+    var commentCount: Int?
 }
 
 extension Post: Decodable {
@@ -24,6 +25,7 @@ extension Post: Decodable {
         case timestamp = "timestamp"
         case subject = "subject"
         case imageuuid = "imageuuid"
+        case commentCount = "comment_count"
     }
     
     init(from decoder: Decoder) throws {
@@ -39,5 +41,6 @@ extension Post: Decodable {
         timestamp = formatter.date(from: timestampString)!
         imageuuid = try values.decodeIfPresent(String.self, forKey: .imageuuid)
         subject = try values.decodeIfPresent(String.self, forKey: .subject)
+        commentCount = try values.decodeIfPresent(Int.self, forKey: .commentCount)
     }
 }

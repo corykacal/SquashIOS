@@ -14,24 +14,27 @@ import SwiftSVG
 struct SinglePost: View {
     let post: Post
     @ObservedObject var mainViewModel: MainViewModel
+    
 
     
     var body: some View {
             List {
-                PostRow(post: self.post)
+                PostRow(post: self.post, fullImage: true)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
                 
                 ForEach(mainViewModel.comments) { post in
                     CommentRow(post: post)
                 }.listRowBackground(Color.clear)
             }.onAppear(perform: fetchComments)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .layoutPriority(10)
-
-
+        .onDisappear(perform: resetView)
     }
     
     private func fetchComments() {
         mainViewModel.fetchComments(opUUID: "meme", postNumber: post.id,  latitude: 30.285610, longitude: -97.737204)
+    }
+    
+    private func resetView() {
+        print("closing view!!!!!")
     }
 }
 
