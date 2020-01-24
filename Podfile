@@ -16,6 +16,8 @@ target 'Squash' do
   pod 'Firebase/Analytics'
   pod 'GTMSessionFetcher'
   pod 'SwiftSVG', '~> 2.0'
+  pod 'SDWebImageSwiftUI'
+
 
 
   target 'SquashTests' do

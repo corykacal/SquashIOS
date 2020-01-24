@@ -57,6 +57,11 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
+  - SDWebImage (5.5.1):
+    - SDWebImage/Core (= 5.5.1)
+  - SDWebImage/Core (5.5.1)
+  - SDWebImageSwiftUI (0.10.0):
+    - SDWebImage (~> 5.3)
   - SwiftSVG (2.3.2)
 
 DEPENDENCIES:
@@ -67,6 +72,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - GTMSessionFetcher
+  - SDWebImageSwiftUI
   - SwiftSVG (~> 2.0)
 
 SPEC REPOS:
@@ -82,6 +88,8 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - SDWebImage
+    - SDWebImageSwiftUI
     - SwiftSVG
 
 SPEC CHECKSUMS:
@@ -96,8 +104,10 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
+  SDWebImage: 1245d058b7b8f59adef7a6da6bbafd4f1ab67041
+  SDWebImageSwiftUI: 56541a8970e6dfad07c48bd03bc411611c644d15
   SwiftSVG: ca7f64e403b8ea7ea8eba8c823b83ba4a059834c
 
-PODFILE CHECKSUM: 41a7ff70ce4b8d125401a8690442c3b4851eac70
+PODFILE CHECKSUM: b5dab72e220d47840c924b9d97d59f91a90f03cc
 
 COCOAPODS: 1.8.4
