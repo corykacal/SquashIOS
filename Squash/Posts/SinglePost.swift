@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Firebase
+import SwiftSVG
 
 
 struct SinglePost: View {
@@ -18,7 +19,7 @@ struct SinglePost: View {
     var body: some View {
             List {
                 PostRow(post: self.post)
-
+                
                 ForEach(mainViewModel.comments) { post in
                     CommentRow(post: post)
                 }.listRowBackground(Color.clear)

@@ -15,6 +15,8 @@ target 'Squash' do
   pod 'Firebase/Storage'
   pod 'Firebase/Analytics'
   pod 'GTMSessionFetcher'
+  pod 'SwiftSVG', '~> 2.0'
+
 
   target 'SquashTests' do
     inherit! :search_paths

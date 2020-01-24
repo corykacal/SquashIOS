@@ -7,6 +7,8 @@
 //
 
 import SwiftUI
+import SwiftSVG
+import UIKit
 
 
 /*
@@ -34,6 +36,25 @@ import SwiftUI
 struct PostRow: View {
     let post: Post
     
+    let svg = SVGView(SVGNamed: "Arrow-down")
+    
+    private func getTimeSince(date: Date) -> String {
+        let seconds = Int(abs(date.timeIntervalSinceNow))
+        let minutes = (seconds/60)
+        let hours = (minutes/60)
+        let days = (hours/24)
+        let possibleTickers = [["d", days],  ["h", hours], ["m", minutes], ["s", seconds]]
+        for pair in possibleTickers {
+            let ticker = pair[0] as! String
+            let value = pair[1] as! Int
+            if(value>0) {
+                return String(value) + " " + ticker
+            }
+        }
+        return "0 s"
+    }
+    
+    
     var body: some View {
         VStack(spacing: 10) {
             HStack {
@@ -41,7 +62,6 @@ struct PostRow: View {
                     self.post.subject.map({
                         Text($0)
                     })
-                    
 
                     Text(self.post.contents)
                         .font(.subheadline)
@@ -52,6 +72,7 @@ struct PostRow: View {
                 Spacer()
             }
             .padding()
+            
                         
             HStack {
                 self.post.imageuuid.map({
@@ -68,7 +89,7 @@ struct PostRow: View {
 
         
             HStack {
-                Text(String(self.post.id))
+                Text(getTimeSince(date: self.post.timestamp))
                 
                 Spacer()
             }
@@ -89,7 +110,7 @@ struct PostRow: View {
 struct PostRow_Previews: PreviewProvider {
     static var previews: some View {
         PostRow(post: Post(contents: "test post", id: 1
-            , timestamp: "10 s", imageuuid: "43"))
+            , timestamp: Date(), imageuuid: "43"))
     }
 }
 #endif
