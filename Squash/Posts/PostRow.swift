@@ -59,19 +59,32 @@ struct PostRow: View {
         VStack(spacing: 10) {
             HStack {
                 VStack(alignment: .leading) {
-                    self.post.subject.map({
-                        Text($0)
-                    })
+                    if self.post.subject != nil {
+                        ZStack(alignment: .leading) {
+                            Rectangle()
+                                .size(width: 1000, height: 17)
+                                .fill(Color.yellow)
+                                .padding(.horizontal, -20)
+                                .padding(.top, -5)
+                            Text(self.post.subject!.uppercased())
+                                .bold()
+                                .font(.system(size: 11))
+                                .padding(.top, -5)
+                                .foregroundColor(Color.white)
+                        }.padding(.bottom, -7)
+                    }
 
                     Text(self.post.contents)
                         .font(.subheadline)
                         .foregroundColor(.primary)
+                        .padding(.top, 3.5)
                 }
                 .layoutPriority(100)
 
                 Spacer()
             }
-            .padding()
+            .padding(.top, 5)
+            .padding(.horizontal, 6)
             
                         
             HStack {
@@ -90,6 +103,10 @@ struct PostRow: View {
         
             HStack {
                 Text(getTimeSince(date: self.post.timestamp))
+                    .font(.system(size: 13))
+                    .padding(.bottom, 5)
+                    .padding(.horizontal, 7)
+                
                 
                 Spacer()
             }
