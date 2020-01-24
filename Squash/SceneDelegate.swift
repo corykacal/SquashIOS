@@ -28,9 +28,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // Use a UIHostingController as window root view controller.
             if let windowScene = scene as? UIWindowScene {
                 UITableView.appearance().separatorColor = .clear
+                UITableView.appearance().backgroundColor = .clear
                 let window = UIWindow(windowScene: windowScene)
                 let service = SquashService()
                 let mainViewModel = MainViewModel(service: service, user: authResult)
+                
                 
                 window.rootViewController = UIHostingController(rootView: ContentView(mainViewModel: mainViewModel))
                 self.window = window

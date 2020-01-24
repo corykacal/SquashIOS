@@ -27,6 +27,7 @@ struct FirebaseImage : View {
         Image(uiImage: image ?? placeholder)
         .resizable()
         .scaledToFill()
+
     }
 }
 

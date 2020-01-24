@@ -18,19 +18,23 @@ struct PostsList: View {
     
     var body: some View {
         NavigationView {
+            //ZStack for the floating action button
             ZStack {
                 
-                    List {
-                        ForEach(mainViewModel.posts) { post in
-                            ZStack {
-                                PostRow(post: post, fullImage: false)
-                                NavigationLink(destination: SinglePost(post: post, mainViewModel: self.mainViewModel)) {
-                                    EmptyView()
-                                }
+                ScrollView {
+                    VStack {
+                    ForEach(mainViewModel.posts) { post in
+                        ZStack {
+                            PostRow(post: post, fullImage: false)
+                            NavigationLink(destination: SinglePost(post: post, mainViewModel: self.mainViewModel)) {
+                                EmptyView()
                             }
-                           
-                        }.listRowBackground(Color.clear)
-                    }.background(Color.clear)
+                        }
+                    }
+                    }
+                }
+                .background(Image("Background"))
+                 
                 VStack {
                     Spacer()
                     HStack {

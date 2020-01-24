@@ -55,10 +55,10 @@ struct CommentRow: View {
         }
         .cornerRadius(10)
         .overlay(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.9), lineWidth: 1)
-        ).background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
-        .padding([.top, .horizontal])
+             RoundedRectangle(cornerRadius: 10)
+                 .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.1), lineWidth: 1)
+         ).background(RoundedRectangle(cornerRadius: 10).fill(Color.white)
+             .shadow(radius: 2, x: 0.5, y: 2.5))
         
        
     }

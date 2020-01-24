@@ -35,6 +35,7 @@ struct PostRow: View {
     
     
     var body: some View {
+        
         //Entire post stack
         VStack(spacing: 10) {
             
@@ -80,6 +81,9 @@ struct PostRow: View {
                     FirebaseImage(id: self.post.imageuuid!)
                         .clipShape(
                         RoundedRectangle(cornerRadius: 10)
+                    )        .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.2), lineWidth: 1)
                     )
                     .padding([.horizontal], 20)
                 } else {
@@ -88,6 +92,10 @@ struct PostRow: View {
                         .clipShape(
                         RoundedRectangle(cornerRadius: 10)
                     )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.2), lineWidth: 1)
+                        )
                     .padding([.horizontal], 20)
                 }
             }
@@ -113,9 +121,12 @@ struct PostRow: View {
         .cornerRadius(10)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.9), lineWidth: 1)
-        ).background(RoundedRectangle(cornerRadius: 10).fill(Color.white))
-        .padding([.top, .horizontal], 5)
+                .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.1), lineWidth: 1)
+        ).background(RoundedRectangle(cornerRadius: 10).fill(Color.white)
+            .shadow(radius: 2, x: 0.5, y: 2.5))
+            .padding([.top, .horizontal], 5)
+            .padding(.horizontal, 5)
+        
         
        
     }
