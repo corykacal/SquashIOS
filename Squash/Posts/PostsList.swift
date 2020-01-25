@@ -23,16 +23,14 @@ struct PostsList: View {
                 
                 ScrollView {
                     VStack {
-                    ForEach(mainViewModel.posts) { post in
-                        ZStack {
-                            PostRow(post: post, fullImage: false)
-                            NavigationLink(destination: SinglePost(post: post, mainViewModel: self.mainViewModel)) {
-                                EmptyView()
-                            }
+                        ForEach(mainViewModel.posts) { post in
+                            NavigationLink(destination: SinglePost(post: post).environmentObject(self.mainViewModel)) {
+                                PostRow(post: post, fullImage: false)
+                            }.buttonStyle(PlainButtonStyle())
                         }
                     }
-                    }
-                }
+                }.onAppear(perform: fetchPosts)
+
                 .background(Image("Background"))
                  
                 VStack {
@@ -65,7 +63,6 @@ struct PostsList: View {
 
             }
         }
-        .onAppear(perform: fetchPosts)
     }
     
     private func fetchPosts() {

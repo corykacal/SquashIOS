@@ -13,7 +13,8 @@ import SwiftSVG
 
 struct SinglePost: View {
     let post: Post
-    @ObservedObject var mainViewModel: MainViewModel
+    
+    @EnvironmentObject var mainViewModel: MainViewModel
     
 
     
