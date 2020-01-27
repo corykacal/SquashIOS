@@ -89,4 +89,38 @@ class SquashService {
             }
         }.resume()
     }
+    
+    func getSubjects(for opuuid: String, latitude: Double, longitude: Double, completion: @escaping (Result<[Subject], Error>) -> Void) {
+        
+        
+        var components = URLComponents()
+        components.scheme = "http"
+        components.host = self.base_url
+        components.port = 5000
+        components.path = "/api/subjects/"
+        components.queryItems = [
+            URLQueryItem(name: "opuuid", value: opuuid),
+            URLQueryItem(name: "latitude", value: String(latitude)),
+            URLQueryItem(name: "longitude", value: String(longitude))
+        ]
+        
+        guard let url = components.url else {
+            preconditionFailure("shit broke")
+        }
+        
+        session.dataTask(with: url) { [weak self] data, _, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                do {
+                    let data = data ?? Data()
+                    let response = try self?.decoder.decode(SubjectListing.self, from: data)
+                    completion(.success(response?.subjects ?? []))
+                } catch {
+                    completion(.failure(error))
+                }
+            }
+        }.resume()
+    }
+
 }

@@ -20,6 +20,7 @@ class MainViewModel: ObservableObject {
     @Published var posts = [Post(contents: "", id: 0, timestamp: Date(), subject: nil, imageuuid: nil, commentCount: 0)]
     @Published var comments = [Post]()
     @Published var user = Auth.auth().currentUser
+    @Published var subjects = [Subject(subject: "All", color: nil)]
     
     init(service: SquashService, user: User?) {
         self.service = service
@@ -55,6 +56,21 @@ class MainViewModel: ObservableObject {
             }
         }
     }
+    
+    func fetchSubjects(opUUID: String, latitude: Double, longitude: Double) {
+        service.getSubjects(for: opUUID, latitude: latitude, longitude: longitude) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let subjects):
+                    self?.subjects = subjects
+                    print(subjects)
+                case .failure:
+                    self?.subjects = []
+                }
+            }
+        }
+    }
+
     
     
 }

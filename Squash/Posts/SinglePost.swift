@@ -20,7 +20,6 @@ struct SinglePost: View {
     
     var body: some View {
             NavigationView {
-                
                 ScrollView {
                     VStack {
                         PostRow(post: self.post, cropped: false)

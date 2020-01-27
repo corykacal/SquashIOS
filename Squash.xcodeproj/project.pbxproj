@@ -30,6 +30,9 @@
 		8B6A318123CC3ECC004C34DD /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A318023CC3ECC004C34DD /* MainViewModel.swift */; };
 		8B700F3D23DE4B1B00E33653 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B700F3C23DE4B1B00E33653 /* GoogleService-Info.plist */; };
 		8B700F3F23DE4D7A00E33653 /* Arrow-down.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8B700F3E23DE4D7A00E33653 /* Arrow-down.svg */; };
+		8B700F4123DEAE6800E33653 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B700F4023DEAE6800E33653 /* Spinner.swift */; };
+		8B700F4323DEC90300E33653 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B700F4223DEC90300E33653 /* Subject.swift */; };
+		8B700F4523DECB0200E33653 /* SubjectListing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B700F4423DECB0200E33653 /* SubjectListing.swift */; };
 		8BEC48B323D7C4FD001CF80A /* SinglePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEC48B223D7C4FD001CF80A /* SinglePost.swift */; };
 		8BEC48B523D7C9D9001CF80A /* CommentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEC48B423D7C9D9001CF80A /* CommentRow.swift */; };
 		8BEC48B823D7D0E2001CF80A /* NewPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEC48B723D7D0E2001CF80A /* NewPost.swift */; };
@@ -88,6 +91,9 @@
 		8B6A318023CC3ECC004C34DD /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		8B700F3C23DE4B1B00E33653 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8B700F3E23DE4D7A00E33653 /* Arrow-down.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Arrow-down.svg"; path = "../../../../Desktop/Arrow-down.svg"; sourceTree = "<group>"; };
+		8B700F4023DEAE6800E33653 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
+		8B700F4223DEC90300E33653 /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
+		8B700F4423DECB0200E33653 /* SubjectListing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectListing.swift; sourceTree = "<group>"; };
 		8BEC48B223D7C4FD001CF80A /* SinglePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePost.swift; sourceTree = "<group>"; };
 		8BEC48B423D7C9D9001CF80A /* CommentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRow.swift; sourceTree = "<group>"; };
 		8BEC48B723D7D0E2001CF80A /* NewPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPost.swift; sourceTree = "<group>"; };
@@ -153,6 +159,7 @@
 			children = (
 				8B5D9BC123CD557C0045B8D4 /* CardView.swift */,
 				8B0F3F0823DA70C800483B9D /* SVGImage.swift */,
+				8B700F4023DEAE6800E33653 /* Spinner.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -255,6 +262,8 @@
 			children = (
 				8B6A317923CC28B4004C34DD /* Post.swift */,
 				8B6A317B23CC34B0004C34DD /* Listing.swift */,
+				8B700F4223DEC90300E33653 /* Subject.swift */,
+				8B700F4423DECB0200E33653 /* SubjectListing.swift */,
 			);
 			path = DataTypes;
 			sourceTree = "<group>";
@@ -517,6 +526,7 @@
 				8BEC48B823D7D0E2001CF80A /* NewPost.swift in Sources */,
 				8BEC48B523D7C9D9001CF80A /* CommentRow.swift in Sources */,
 				8B6A317823CC2871004C34DD /* PostRow.swift in Sources */,
+				8B700F4123DEAE6800E33653 /* Spinner.swift in Sources */,
 				8B6A317F23CC360D004C34DD /* SquashService.swift in Sources */,
 				8B6A318123CC3ECC004C34DD /* MainViewModel.swift in Sources */,
 				8B6A317A23CC28B4004C34DD /* Post.swift in Sources */,
@@ -525,9 +535,11 @@
 				8B6A314823CC2672004C34DD /* ContentView.swift in Sources */,
 				8B5D9BC223CD557C0045B8D4 /* CardView.swift in Sources */,
 				8B3DC08123D95A9100131AB7 /* PhotoLoader.swift in Sources */,
+				8B700F4323DEC90300E33653 /* Subject.swift in Sources */,
 				8B6A314323CC2672004C34DD /* SceneDelegate.swift in Sources */,
 				8B0F3F0923DA70C800483B9D /* SVGImage.swift in Sources */,
 				8BEC48B323D7C4FD001CF80A /* SinglePost.swift in Sources */,
+				8B700F4523DECB0200E33653 /* SubjectListing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
