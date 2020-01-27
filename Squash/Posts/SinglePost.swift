@@ -23,8 +23,7 @@ struct SinglePost: View {
                 ScrollView {
                     VStack {
                         PostRow(post: self.post, cropped: false)
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
-                
+
                         ForEach(mainViewModel.comments) { post in
                             CommentRow(post: post)
                         }

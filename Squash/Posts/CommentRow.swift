@@ -30,38 +30,58 @@ struct CommentRow: View {
     }
     
     var body: some View {
-        VStack {
             HStack {
-                VStack(alignment: .leading) {
-                    Text(post.contents)
-                        .font(.subheadline)
-                        .foregroundColor(.primary)
-                }
-                .layoutPriority(100)
-
-                Spacer()
-            }
-            .padding()
-        
-            //HStack to move the timestamp and comment count to the left using the trailing Spacer()
-            HStack {
-                Text(getTimeSince(date: self.post.timestamp))
-                    .font(.system(size: 13))
-                    .padding(.bottom, 5)
-                    .padding(.horizontal, 7)
+            //Entire post stack
+            VStack(spacing: 10) {
                 
-                Spacer()
+                //HStack to move content to the left using the trailing Spacer()
+                HStack {
+                    //VStack to stack the subject ontop of the contents
+                    VStack(alignment: .leading, spacing: 0) {
+
+                        //post contents
+                        Text(self.post.contents)
+                            .font(.system(size: 18))
+                            .foregroundColor(.primary)
+                            .padding(.top, 3.5)
+
+                    }
+                    .layoutPriority(100)
+
+                    Spacer()
+                }
+                .padding(.top, 5)
+                .padding(.horizontal, 6)
+
+                
+
+
+                //HStack to move the timestamp and comment count to the left using the trailing Spacer()
+                HStack {
+                    Text(getTimeSince(date: self.post.timestamp))
+                        .font(.system(size: 13))
+                        .padding(.bottom, 5)
+                        .padding(.horizontal, 7)
+                    
+                    Spacer()
+                }
             }
+                
+                
+               // SVGImage(svgName: "Arrow-down")
+            }
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.1), lineWidth: 1)
+            ).background(RoundedRectangle(cornerRadius: 10).fill(Color.white)
+                .shadow(radius: 2, x: 0.5, y: 2.5))
+                .padding([.top, .horizontal], 5)
+                .padding(.horizontal, 5)
+            
+            
+           
         }
-        .cornerRadius(10)
-        .overlay(
-             RoundedRectangle(cornerRadius: 10)
-                 .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.1), lineWidth: 1)
-         ).background(RoundedRectangle(cornerRadius: 10).fill(Color.white)
-             .shadow(radius: 2, x: 0.5, y: 2.5))
-        
-       
-    }
 }
 
 

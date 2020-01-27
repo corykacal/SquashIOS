@@ -13,7 +13,8 @@ struct SVGImage: UIViewRepresentable {
     let svgName: String
     
     func makeUIView(context: Context) -> UIView {
-        return UIView(SVGNamed: svgName) { (svgLayer) in svgLayer.boundingBox = CGRect(x: 0, y: 0, width: 100, height: 100) }    }
+        return UIView(SVGNamed: svgName)
+    }
     
     func updateUIView(_ uiView: UIView, context: Context) {
     }

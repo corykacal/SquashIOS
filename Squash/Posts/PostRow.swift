@@ -37,7 +37,6 @@ struct PostRow: View {
         HStack {
         //Entire post stack
         VStack(spacing: 10) {
-            
             //HStack to move content to the left using the trailing Spacer()
             HStack {
                 //VStack to stack the subject ontop of the contents
@@ -59,10 +58,9 @@ struct PostRow: View {
                                 .foregroundColor(Color.white)
                         }
                     }
-
                     //post contents
                     Text(self.post.contents)
-                        .font(.subheadline)
+                        .font(.system(size: 18))
                         .foregroundColor(.primary)
                         .padding(.top, 3.5)
                 }
@@ -72,7 +70,6 @@ struct PostRow: View {
             }
             .padding(.top, 5)
             .padding(.horizontal, 6)
-            
                         
             //Image attatched to the post
             if self.post.imageuuid != nil {
@@ -101,28 +98,31 @@ struct PostRow: View {
                 }
             }
 
-            
-
-
             //HStack to move the timestamp and comment count to the left using the trailing Spacer()
             HStack {
                 Text(getTimeSince(date: self.post.timestamp))
                     .font(.system(size: 13))
                     .padding(.bottom, 5)
-                    .padding(.horizontal, 7)
+                    .padding(.leading, 7)
+                    .opacity(0.3)
                 
+                Image(systemName: "text.bubble.fill")
+                    .font(.system(size: 12.0, weight: .bold))
+                    .foregroundColor(Color.black)
+                    .opacity(0.2)
+                    .padding(.bottom, 3)
+                    .padding(.trailing, -4)
+
                 if self.post.commentCount != nil {
                     Text(String(self.post.commentCount!))
                         .font(.system(size: 13))
                         .padding(.bottom, 5)
+                        .opacity(0.3)
                 }
                 
                 Spacer()
             }
         }
-            
-            
-           // SVGImage(svgName: "Arrow-down")
         }
         .cornerRadius(10)
         .overlay(
@@ -132,9 +132,6 @@ struct PostRow: View {
             .shadow(radius: 2, x: 0.5, y: 2.5))
             .padding([.top, .horizontal], 5)
             .padding(.horizontal, 5)
-        
-        
-       
     }
 }
 

@@ -81,7 +81,7 @@ struct PostsList: View {
                                 x: 3,
                                 y: 3)
                     .sheet(isPresented: $isModal, content: {
-                        NewPost()
+                        NewPost().environmentObject(self.mainViewModel)
                     })
                 }
             }
