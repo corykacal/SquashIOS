@@ -7,15 +7,14 @@
 //
 
 import SwiftUI
+import SwiftSVG
 
-struct SVGImage: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct SVGImage_Previews: PreviewProvider {
-    static var previews: some View {
-        SVGImage()
+struct SVGImage: UIViewRepresentable {
+    let svgName: String
+    
+    func makeUIView(context: Context) -> UIView {
+        return UIView(SVGNamed: svgName) { (svgLayer) in svgLayer.boundingBox = CGRect(x: 0, y: 0, width: 100, height: 100) }    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {
     }
 }

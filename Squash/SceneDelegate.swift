@@ -30,8 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let window = UIWindow(windowScene: windowScene)
                 let service = SquashService()
                 let mainViewModel = MainViewModel(service: service, user: authResult)
-                
-                
+
                 window.rootViewController = UIHostingController(rootView: ContentView(mainViewModel: mainViewModel))
                 self.window = window
                 window.makeKeyAndVisible()

@@ -28,7 +28,8 @@
 		8B6A317C23CC34B0004C34DD /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A317B23CC34B0004C34DD /* Listing.swift */; };
 		8B6A317F23CC360D004C34DD /* SquashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A317E23CC360D004C34DD /* SquashService.swift */; };
 		8B6A318123CC3ECC004C34DD /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A318023CC3ECC004C34DD /* MainViewModel.swift */; };
-		8B8E703B23D907910001BC02 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B8E703A23D907910001BC02 /* GoogleService-Info.plist */; };
+		8B700F3D23DE4B1B00E33653 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B700F3C23DE4B1B00E33653 /* GoogleService-Info.plist */; };
+		8B700F3F23DE4D7A00E33653 /* Arrow-down.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8B700F3E23DE4D7A00E33653 /* Arrow-down.svg */; };
 		8BEC48B323D7C4FD001CF80A /* SinglePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEC48B223D7C4FD001CF80A /* SinglePost.swift */; };
 		8BEC48B523D7C9D9001CF80A /* CommentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEC48B423D7C9D9001CF80A /* CommentRow.swift */; };
 		8BEC48B823D7D0E2001CF80A /* NewPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEC48B723D7D0E2001CF80A /* NewPost.swift */; };
@@ -85,7 +86,8 @@
 		8B6A317B23CC34B0004C34DD /* Listing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
 		8B6A317E23CC360D004C34DD /* SquashService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquashService.swift; sourceTree = "<group>"; };
 		8B6A318023CC3ECC004C34DD /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
-		8B8E703A23D907910001BC02 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8B700F3C23DE4B1B00E33653 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8B700F3E23DE4D7A00E33653 /* Arrow-down.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Arrow-down.svg"; path = "../../../../Desktop/Arrow-down.svg"; sourceTree = "<group>"; };
 		8BEC48B223D7C4FD001CF80A /* SinglePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePost.swift; sourceTree = "<group>"; };
 		8BEC48B423D7C9D9001CF80A /* CommentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRow.swift; sourceTree = "<group>"; };
 		8BEC48B723D7D0E2001CF80A /* NewPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPost.swift; sourceTree = "<group>"; };
@@ -186,10 +188,11 @@
 				8B6A314023CC2672004C34DD /* AppDelegate.swift */,
 				8B6A314223CC2672004C34DD /* SceneDelegate.swift */,
 				8B6A314723CC2672004C34DD /* ContentView.swift */,
+				8B700F3E23DE4D7A00E33653 /* Arrow-down.svg */,
 				8BEC48B923D7F1D3001CF80A /* FullScreen.swift */,
 				8B6A314923CC2676004C34DD /* Assets.xcassets */,
+				8B700F3C23DE4B1B00E33653 /* GoogleService-Info.plist */,
 				8B6A314E23CC2676004C34DD /* LaunchScreen.storyboard */,
-				8B8E703A23D907910001BC02 /* GoogleService-Info.plist */,
 				8B6A315123CC2676004C34DD /* Info.plist */,
 				8B6A314423CC2672004C34DD /* Squash.xcdatamodeld */,
 				8B6A314B23CC2676004C34DD /* Preview Content */,
@@ -376,7 +379,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B6A315023CC2676004C34DD /* LaunchScreen.storyboard in Resources */,
-				8B8E703B23D907910001BC02 /* GoogleService-Info.plist in Resources */,
+				8B700F3F23DE4D7A00E33653 /* Arrow-down.svg in Resources */,
+				8B700F3D23DE4B1B00E33653 /* GoogleService-Info.plist in Resources */,
 				8B6A314D23CC2676004C34DD /* Preview Assets.xcassets in Resources */,
 				8B6A314A23CC2676004C34DD /* Assets.xcassets in Resources */,
 			);

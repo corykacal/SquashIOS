@@ -17,50 +17,49 @@ struct PostsList: View {
 
     
     var body: some View {
-        NavigationView {
+        ZStack {
             //ZStack for the floating action button
-            ZStack {
+            NavigationView {
                 
                 ScrollView {
                     VStack {
                         ForEach(mainViewModel.posts) { post in
                             NavigationLink(destination: SinglePost(post: post).environmentObject(self.mainViewModel)) {
-                                PostRow(post: post, fullImage: false)
+                                PostRow(post: post, cropped: true)
                             }.buttonStyle(PlainButtonStyle())
                         }
                     }
                 }.onAppear(perform: fetchPosts)
 
                 .background(Image("Background"))
-                 
-                VStack {
+            }
+            
+            VStack {
+                Spacer()
+                HStack {
                     Spacer()
-                    HStack {
-                        Spacer()
 
-                        Button(action: {
-                            self.isModal = true
-                            }, label: {
-                                Text("+")
-                                    .font(.system(.largeTitle))
-                                    .frame(width: 77, height: 70)
-                                    .foregroundColor(Color.white)
-                                    .padding(.bottom, 7)
-                            })
-                            .background(Color.blue)
-                            .cornerRadius(38.5)
-                            .padding()
-                            .opacity(0.7)
-                            .shadow(color: Color.black.opacity(0.3),
-                                    radius: 3,
-                                    x: 3,
-                                    y: 3)
-                        .sheet(isPresented: $isModal, content: {
-                            NewPost()
+                    Button(action: {
+                        self.isModal = true
+                        }, label: {
+                            Text("+")
+                                .font(.system(.largeTitle))
+                                .frame(width: 77, height: 70)
+                                .foregroundColor(Color.white)
+                                .padding(.bottom, 7)
                         })
-                    }
+                        .background(Color.blue)
+                        .cornerRadius(38.5)
+                        .padding()
+                        .opacity(0.7)
+                        .shadow(color: Color.black.opacity(0.3),
+                                radius: 3,
+                                x: 3,
+                                y: 3)
+                    .sheet(isPresented: $isModal, content: {
+                        NewPost()
+                    })
                 }
-
             }
         }
     }
@@ -69,6 +68,11 @@ struct PostsList: View {
         mainViewModel.fetchPosts(opUUID: "meme", latitude: 30.285610, longitude: -97.737204, number_of_posts: 10, page_number: 0)
     }
 }
+
+
+
+
+
 
 /*
 #if DEBUG

@@ -13,9 +13,7 @@ import UIKit
 
 struct PostRow: View {
     let post: Post
-    let fullImage: Bool
-    
-    let svg = SVGView(SVGNamed: "Arrow-down")
+    let cropped: Bool
     
     private func getTimeSince(date: Date) -> String {
         let seconds = Int(abs(date.timeIntervalSinceNow))
@@ -36,16 +34,18 @@ struct PostRow: View {
     
     var body: some View {
         
+        HStack {
         //Entire post stack
         VStack(spacing: 10) {
             
             //HStack to move content to the left using the trailing Spacer()
             HStack {
                 //VStack to stack the subject ontop of the contents
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 0) {
+                    ZStack(alignment: .leading) {
+
                     if self.post.subject != nil {
                         //ZStack to place the subject ontop of the rectangle
-                        ZStack(alignment: .leading) {
                             Rectangle()
                                 .size(width: 1000, height: 17)
                                 .fill(Color.yellow)
@@ -57,7 +57,7 @@ struct PostRow: View {
                                 .font(.system(size: 13))
                                 .padding(.top, -5)
                                 .foregroundColor(Color.white)
-                        }.padding(.bottom, -7)
+                        }
                     }
 
                     //post contents
@@ -77,8 +77,9 @@ struct PostRow: View {
             //Image attatched to the post
             if self.post.imageuuid != nil {
                 //display full image for single post or not
-                if(fullImage) {
+                if self.cropped {
                     FirebaseImage(id: self.post.imageuuid!)
+                        .frame(minWidth: 0, idealWidth: 200, maxWidth: .infinity, minHeight: 130, idealHeight: 130, maxHeight:   200, alignment: .center)
                         .clipShape(
                         RoundedRectangle(cornerRadius: 10)
                     )        .overlay(
@@ -88,7 +89,7 @@ struct PostRow: View {
                     .padding([.horizontal], 20)
                 } else {
                     FirebaseImage(id: self.post.imageuuid!)
-                        .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 130, idealHeight: 130, maxHeight:   200, alignment: .center)
+                        
                         .clipShape(
                         RoundedRectangle(cornerRadius: 10)
                     )
@@ -99,6 +100,7 @@ struct PostRow: View {
                     .padding([.horizontal], 20)
                 }
             }
+
             
 
 
@@ -118,6 +120,10 @@ struct PostRow: View {
                 Spacer()
             }
         }
+            
+            
+           // SVGImage(svgName: "Arrow-down")
+        }
         .cornerRadius(10)
         .overlay(
             RoundedRectangle(cornerRadius: 10)
@@ -136,8 +142,7 @@ struct PostRow: View {
 #if DEBUG
 struct PostRow_Previews: PreviewProvider {
     static var previews: some View {
-        PostRow(post: Post(contents: "test post", id: 1
-            , timestamp: Date(), imageuuid: "43"), fullImage: false)
+        PostRow(post: Post(contents: "test post", id: 1, timestamp: Date(), subject: "test", imageuuid: "43"), cropped: true)
     }
 }
 #endif
