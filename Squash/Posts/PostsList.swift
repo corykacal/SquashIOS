@@ -26,8 +26,9 @@ struct PostsList: View {
                                 PostRow(post: post, cropped: true)
                             }.buttonStyle(PlainButtonStyle())
                         }
-                    }
-                }.padding(.top, 10)
+                    }.padding(.bottom, 100)
+                    .padding(.top, 10)
+                }
                 .onAppear(perform: fetchPosts).navigationBarHidden(false)
                 .onAppear(perform: fetchSubjects)
                 .background(Image("Background"))
@@ -50,7 +51,8 @@ struct PostsList: View {
                     // 5.
                     .navigationBarTitle(Text("Names"), displayMode: .inline)
 
-            }    .navigationViewStyle(StackNavigationViewStyle())
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
 
             VStack {
                 Spinner(items: mainViewModel.subjects)

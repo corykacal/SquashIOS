@@ -17,7 +17,7 @@ class MainViewModel: ObservableObject {
     
     
     @Published var showFullScreen = false
-    @Published var posts = [Post(contents: "", id: 0, timestamp: Date(), subject: nil, imageuuid: nil, commentCount: 0)]
+    @Published var posts = [Post(contents: "", id: 0, timestamp: Date(), subject: nil, imageuuid: nil, commentCount: 0, points: 0)]
     @Published var comments = [Post]()
     @Published var user = Auth.auth().currentUser
     @Published var subjects = [Subject(subject: "All", color: nil)]

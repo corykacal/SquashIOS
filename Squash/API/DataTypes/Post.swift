@@ -16,6 +16,7 @@ struct Post: Identifiable {
     var subject: String?
     var imageuuid: String?
     var commentCount: Int?
+    var points: Int
 }
 
 extension Post: Decodable {
@@ -26,6 +27,8 @@ extension Post: Decodable {
         case subject = "subject"
         case imageuuid = "imageuuid"
         case commentCount = "comment_count"
+        case up = "up"
+        case down = "down"
     }
     
     init(from decoder: Decoder) throws {
@@ -42,5 +45,8 @@ extension Post: Decodable {
         imageuuid = try values.decodeIfPresent(String.self, forKey: .imageuuid)
         subject = try values.decodeIfPresent(String.self, forKey: .subject)
         commentCount = try values.decodeIfPresent(Int.self, forKey: .commentCount)
+        let up = try values.decode(Int.self, forKey: .up)
+        let down = try values.decode(Int.self, forKey: .down)
+        points = up-down
     }
 }
