@@ -91,7 +91,7 @@ struct PostsList: View {
     }
     
     private func fetchPosts() {
-        mainViewModel.fetchPosts(latitude: 30.285610, longitude: -97.737204, number_of_posts: 10, page_number: 0)
+        mainViewModel.fetchPosts(number_of_posts: 40, page_number: 0)
     }
     
     private func fetchSubjects() {

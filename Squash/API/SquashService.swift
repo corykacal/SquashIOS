@@ -160,8 +160,6 @@ class SquashService {
         print(opuuid)
         let postString = self.getPostString(params: json)
         request.httpBody = postString.data(using: .utf8)
-
-        print(request)
         
         session.dataTask(with: request) { [weak self] data, _, error in
             if let error = error {
@@ -214,12 +212,9 @@ class SquashService {
 
         request.allHTTPHeaderFields = headers
 
-        print(opuuid)
         let postString = self.getPostString(params: json)
         request.httpBody = postString.data(using: .utf8)
 
-        print(request)
-        
         session.dataTask(with: request) { [weak self] data, _, error in
             if let error = error {
                 completion(.failure(error))
