@@ -25,8 +25,12 @@ struct SinglePost: View {
                     VStack {
                         PostRow(post: self.post, cropped: false).environmentObject(self.mainViewModel)
 
+                        Divider().padding(.top, 5)
+                            .foregroundColor(Color.yellow)
+                            .padding(.horizontal, 20)
+                        
                         ForEach(mainViewModel.comments) { post in
-                            CommentRow(post: post)
+                            CommentRow(post: post).padding(.vertical, 5)
                         }
                         
                     }

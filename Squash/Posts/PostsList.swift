@@ -29,11 +29,9 @@ struct PostsList: View {
                     }.padding(.bottom, 100)
                     .padding(.top, 10)
                 }
-                .onAppear(perform: fetchPosts).navigationBarHidden(false)
-                .onAppear(perform: fetchSubjects)
                 .background(Image("Background"))
                     .background(NavigationConfigurator { nc in
-                        nc.navigationBar.barTintColor = .yellow
+                        nc.navigationBar.barTintColor = UIColor.yellow
                      })
                 .navigationBarItems(leading:
                 HStack {
@@ -95,7 +93,7 @@ struct PostsList: View {
     }
     
     private func fetchSubjects() {
-        mainViewModel.fetchSubjects(latitude: 30.285610, longitude: -97.737204)
+        mainViewModel.fetchSubjects()
     }
 }
 

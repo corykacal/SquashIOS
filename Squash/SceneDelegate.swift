@@ -23,6 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 
+        
 
         Auth.auth().signInAnonymously() { (authResult, error) in
             // Use a UIHostingController as window root view controller.
@@ -30,6 +31,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let window = UIWindow(windowScene: windowScene)
                 let service = SquashService()
                 let mainViewModel = MainViewModel(service: service, user: authResult)
+                mainViewModel.fetchPosts(number_of_posts: 40, page_number: 1)
+                mainViewModel.fetchSubjects()
+
 
                 window.rootViewController = UIHostingController(rootView: ContentView(mainViewModel: mainViewModel))
                 self.window = window

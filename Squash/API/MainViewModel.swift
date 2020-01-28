@@ -57,8 +57,8 @@ class MainViewModel: ObservableObject {
         }
     }
     
-    func fetchSubjects(latitude: Double, longitude: Double) {
-        service.getSubjects(for: getUid()!, latitude: latitude, longitude: longitude) { [weak self] result in
+    func fetchSubjects() {
+        service.getSubjects(for: getUid()!, latitude: 30.285610, longitude: -97.737204) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let subjects):
