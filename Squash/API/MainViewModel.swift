@@ -21,7 +21,7 @@ class MainViewModel: ObservableObject {
     @Published var comments = [Post]()
     @Published var user = Auth.auth().currentUser
     @Published var subjects = [Subject(subject: "All", color: nil)]
-    
+        
     init(service: SquashService, user: User?) {
         self.service = service
         self.user = user
@@ -31,8 +31,8 @@ class MainViewModel: ObservableObject {
         return self.user?.uid
     }
     
-    func fetchPosts(opUUID: String, latitude: Double, longitude: Double, number_of_posts: Int, page_number: Int) {
-        service.getRecentPosts(for: opUUID, number_of_posts: number_of_posts, page_number: page_number, subject: "All", latitude: latitude, longitude: longitude) { [weak self] result in
+    func fetchPosts(latitude: Double, longitude: Double, number_of_posts: Int, page_number: Int) {
+        service.getRecentPosts(for: getUid()!, number_of_posts: number_of_posts, page_number: page_number, subject: "All", latitude: latitude, longitude: longitude) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let posts):
@@ -44,8 +44,8 @@ class MainViewModel: ObservableObject {
         }
     }
     
-    func fetchComments(opUUID: String, postNumber: Int, latitude: Double, longitude: Double) {
-        service.getComments(for: opUUID, postNumber: postNumber, latitude: latitude, longitude: longitude) { [weak self] result in
+    func fetchComments(postNumber: Int, latitude: Double, longitude: Double) {
+        service.getComments(for: getUid()!, postNumber: postNumber, latitude: latitude, longitude: longitude) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let comments):
@@ -57,8 +57,8 @@ class MainViewModel: ObservableObject {
         }
     }
     
-    func fetchSubjects(opUUID: String, latitude: Double, longitude: Double) {
-        service.getSubjects(for: opUUID, latitude: latitude, longitude: longitude) { [weak self] result in
+    func fetchSubjects(latitude: Double, longitude: Double) {
+        service.getSubjects(for: getUid()!, latitude: latitude, longitude: longitude) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let subjects):
@@ -66,6 +66,32 @@ class MainViewModel: ObservableObject {
                     print(subjects)
                 case .failure:
                     self?.subjects = []
+                }
+            }
+        }
+    }
+    
+    func makeDecision(decision: Bool?, post_number: Int) {
+        service.makeDecision(for: getUid()!, post_number: post_number, decision: decision) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let response):
+                    print(response)
+                case .failure:
+                    print("error")
+                }
+            }
+        }
+    }
+    
+    func makePost(imageuuid: String?, reply_to: Int?, contents: String, subject: String?) {
+        service.makePost(for: getUid()!, imageuuid: imageuuid, reply_to: reply_to, contents: contents, subject: subject, latitude: 30.285610, longitude: -97.737204) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let response):
+                    print(response)
+                case .failure:
+                    print("error")
                 }
             }
         }

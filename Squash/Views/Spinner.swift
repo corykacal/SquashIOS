@@ -60,6 +60,11 @@ struct Spinner: View {
         .animation(.spring())
         .padding(.horizontal, 60)
     }
+    
+    
+    func getSelected() -> String {
+        return self.items[self.currentIndex].subject
+    }
 }
 
 /*

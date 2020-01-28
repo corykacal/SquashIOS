@@ -16,13 +16,14 @@ struct SinglePost: View {
     
     @EnvironmentObject var mainViewModel: MainViewModel
     
+    
 
     
     var body: some View {
             NavigationView {
                 ScrollView {
                     VStack {
-                        PostRow(post: self.post, cropped: false)
+                        PostRow(post: self.post, cropped: false).environmentObject(self.mainViewModel)
 
                         ForEach(mainViewModel.comments) { post in
                             CommentRow(post: post)
@@ -36,7 +37,7 @@ struct SinglePost: View {
     }
     
     private func fetchComments() {
-        mainViewModel.fetchComments(opUUID: "meme", postNumber: post.id,  latitude: 30.285610, longitude: -97.737204)
+        mainViewModel.fetchComments(postNumber: post.id,  latitude: 30.285610, longitude: -97.737204)
     }
     
     private func resetView() {

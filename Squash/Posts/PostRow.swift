@@ -15,6 +15,9 @@ struct PostRow: View {
     let post: Post
     let cropped: Bool
         
+    @EnvironmentObject var mainViewModel: MainViewModel
+
+    
     private func getTimeSince(date: Date) -> String {
         let seconds = Int(abs(date.timeIntervalSinceNow))
         let minutes = (seconds/60)
@@ -31,6 +34,7 @@ struct PostRow: View {
         return "0 s"
     }
     
+    @State var decision: Bool? = nil
     
     var body: some View {
         
@@ -134,11 +138,17 @@ struct PostRow: View {
             VStack {
                 Image(systemName: "chevron.up")
                     .font(.system(size: 29, weight: .medium))
-                    .foregroundColor(Color.black)
-                    .opacity(0.2)
+                    .foregroundColor(self.decision==true ? Color.green : Color.black)
+                    .opacity(0.4)
                     .padding(.top, 15)
                     .onTapGesture {
-                        print("upvote")
+                        if(self.decision==true) {
+                            self.decision = nil
+                            self.mainViewModel.makeDecision(decision: nil, post_number: self.post.id)
+                        } else {
+                            self.decision = true
+                            self.mainViewModel.makeDecision(decision: true, post_number: self.post.id)
+                        }
                     }
                 Spacer()
                 Text(String(self.post.points))
@@ -147,13 +157,21 @@ struct PostRow: View {
                 Spacer()
                 Image(systemName: "chevron.down")
                     .font(.system(size: 29, weight: .medium))
-                    .foregroundColor(Color.black)
-                    .opacity(0.2)
+                    .foregroundColor(self.decision==false ? Color.red : Color.black)
+                    .opacity(0.4)
                     .padding(.bottom, 6)
                     .onTapGesture {
-                        print("downvote")
+                        if(self.decision==false) {
+                            self.decision = nil
+                            self.mainViewModel.makeDecision(decision: nil, post_number: self.post.id)
+                        } else {
+                            self.decision = false
+                            self.mainViewModel.makeDecision(decision: false, post_number: self.post.id)
+                        }
                     }
             }.padding(.trailing, 8)
+            .onAppear(perform: setStates)
+
         }
         .cornerRadius(10)
         .overlay(
@@ -163,6 +181,12 @@ struct PostRow: View {
             .shadow(radius: 2, x: 0.5, y: 2.5))
             .padding([.top, .horizontal], 5)
             .padding(.horizontal, 5)
+    }
+    
+    private func setStates() {
+        self.decision = self.post.decision
+        print(self.post.contents)
+        print(self.post.decision)
     }
 }
 

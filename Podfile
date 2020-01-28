@@ -17,6 +17,7 @@ target 'Squash' do
   pod 'GTMSessionFetcher'
   pod 'SwiftSVG', '~> 2.0'
   pod 'SDWebImageSwiftUI'
+  pod 'Alamofire'
 
 
 

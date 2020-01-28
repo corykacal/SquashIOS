@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.9.1)
   - Firebase (4.13.0):
     - Firebase/Core (= 4.13.0)
   - Firebase/Analytics (4.13.0):
@@ -57,14 +58,15 @@ PODS:
     - nanopb/encode (= 0.3.9011)
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
-  - SDWebImage (5.5.1):
-    - SDWebImage/Core (= 5.5.1)
-  - SDWebImage/Core (5.5.1)
-  - SDWebImageSwiftUI (0.10.0):
+  - SDWebImage (5.5.2):
+    - SDWebImage/Core (= 5.5.2)
+  - SDWebImage/Core (5.5.2)
+  - SDWebImageSwiftUI (0.10.2):
     - SDWebImage (~> 5.3)
   - SwiftSVG (2.3.2)
 
 DEPENDENCIES:
+  - Alamofire
   - Firebase
   - Firebase/Analytics
   - Firebase/Auth
@@ -77,6 +79,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -93,6 +96,7 @@ SPEC REPOS:
     - SwiftSVG
 
 SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   Firebase: 5ec5e863d269d82d66b4bf56856726f8fb8f0fb3
   FirebaseAnalytics: 7ef69e76a5142f643aeb47c780e1cdce4e23632e
   FirebaseAuth: bf22cacf22c60ab454bf2636f556d8892b10b53f
@@ -104,10 +108,10 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
-  SDWebImage: 1245d058b7b8f59adef7a6da6bbafd4f1ab67041
-  SDWebImageSwiftUI: 56541a8970e6dfad07c48bd03bc411611c644d15
+  SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
+  SDWebImageSwiftUI: 72c37ad29b7b79172362015090a10244096e61f0
   SwiftSVG: ca7f64e403b8ea7ea8eba8c823b83ba4a059834c
 
-PODFILE CHECKSUM: b5dab72e220d47840c924b9d97d59f91a90f03cc
+PODFILE CHECKSUM: e60ea1a1198f7668b676b73d068f6c292c5384e7
 
 COCOAPODS: 1.8.4

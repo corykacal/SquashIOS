@@ -23,7 +23,7 @@ struct PostsList: View {
                     VStack {
                         ForEach(mainViewModel.posts) { post in
                             NavigationLink(destination: SinglePost(post: post).environmentObject(self.mainViewModel)) {
-                                PostRow(post: post, cropped: true)
+                                PostRow(post: post, cropped: true).environmentObject(self.mainViewModel)
                             }.buttonStyle(PlainButtonStyle())
                         }
                     }.padding(.bottom, 100)
@@ -83,7 +83,7 @@ struct PostsList: View {
                                 x: 3,
                                 y: 3)
                     .sheet(isPresented: $isModal, content: {
-                        NewPost().environmentObject(self.mainViewModel)
+                        NewPost(isModal: self.$isModal).environmentObject(self.mainViewModel)
                     })
                 }
             }
@@ -91,11 +91,11 @@ struct PostsList: View {
     }
     
     private func fetchPosts() {
-        mainViewModel.fetchPosts(opUUID: "meme", latitude: 30.285610, longitude: -97.737204, number_of_posts: 10, page_number: 0)
+        mainViewModel.fetchPosts(latitude: 30.285610, longitude: -97.737204, number_of_posts: 10, page_number: 0)
     }
     
     private func fetchSubjects() {
-        mainViewModel.fetchSubjects(opUUID: "meme", latitude: 30.285610, longitude: -97.737204)
+        mainViewModel.fetchSubjects(latitude: 30.285610, longitude: -97.737204)
     }
 }
 

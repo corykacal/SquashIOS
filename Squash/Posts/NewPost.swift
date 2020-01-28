@@ -14,6 +14,7 @@ struct NewPost: View {
     
     @EnvironmentObject var mainViewModel: MainViewModel
 
+    @Binding var isModal: Bool
 
     var body: some View {
         ZStack {
@@ -33,6 +34,8 @@ struct NewPost: View {
 
 
                 Button(action: {
+                    self.mainViewModel.makePost(imageuuid: nil, reply_to: nil, contents: self.content, subject: nil)
+                    self.isModal = false
                 }, label: {
                     Text("Post")
                         .font(.system(.largeTitle))
@@ -80,11 +83,12 @@ struct DismissingKeyboard: ViewModifier {
 }
 
 
-
+/*
 #if DEBUG
 struct NewPost_Previews: PreviewProvider {
     static var previews: some View {
-        NewPost()
+        NewPost(isM)
     }
 }
 #endif
+*/

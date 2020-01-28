@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class SquashService {
     private let session: URLSession
     private let decoder: JSONDecoder
@@ -122,5 +123,127 @@ class SquashService {
             }
         }.resume()
     }
+    
+    
+    func makeDecision(for opuuid: String, post_number: Int, decision: Bool?, completion: @escaping (Result<String, Error>) -> Void) {
+        var components = URLComponents()
+        components.scheme = "http"
+        components.host = self.base_url
+        components.port = 5000
+        components.path = "/api/vote/"
+        var json: [String: Any]
+        if(decision==nil) {
+        json = [
+            "opuuid": opuuid,
+            "post_number": String(post_number)
+            ]
+        } else {
+            json = [
+            "opuuid": opuuid,
+            "descision": String(decision!),
+            "post_number": String(post_number)
+            ]
+        }
 
+        guard let url = components.url else {
+            preconditionFailure("shit broke")
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let headers = [
+            "Content-Type": "application/x-www-form-urlencoded"
+        ]
+
+        request.allHTTPHeaderFields = headers
+
+        print(opuuid)
+        let postString = self.getPostString(params: json)
+        request.httpBody = postString.data(using: .utf8)
+
+        print(request)
+        
+        session.dataTask(with: request) { [weak self] data, _, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                do {
+                    let data = data ?? Data()
+                    let response = try self?.decoder.decode(PostResponse.self, from: data)
+                    completion(.success(response?.response ?? ""))
+                } catch {
+                    print(error)
+                    completion(.failure(error))
+                }
+            }
+        }.resume()
+        
+
+    }
+    
+
+    
+    func makePost(for opuuid: String, imageuuid: String?, reply_to: Int?,
+                  contents: String, subject: String?, latitude: Double, longitude: Double,
+                  completion: @escaping (Result<String, Error>) -> Void) {
+        var components = URLComponents()
+        components.scheme = "http"
+        components.host = self.base_url
+        components.port = 5000
+        components.path = "/api/submit/"
+        let json: [String: Any] =
+            [
+                "imageuuid": String(imageuuid ?? ""),
+                "reply_to": reply_to,
+                "opuuid": opuuid,
+                "contents": contents,
+                "subject": String(subject ?? ""),
+                "latitude": latitude,
+                "longitude": longitude
+            ]
+
+        guard let url = components.url else {
+            preconditionFailure("shit broke")
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let headers = [
+            "Content-Type": "application/x-www-form-urlencoded"
+        ]
+
+        request.allHTTPHeaderFields = headers
+
+        print(opuuid)
+        let postString = self.getPostString(params: json)
+        request.httpBody = postString.data(using: .utf8)
+
+        print(request)
+        
+        session.dataTask(with: request) { [weak self] data, _, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                do {
+                    let data = data ?? Data()
+                    let response = try self?.decoder.decode(PostResponse.self, from: data)
+                    completion(.success(response?.response ?? ""))
+                } catch {
+                    print(error)
+                    completion(.failure(error))
+                }
+            }
+        }.resume()
+
+    }
+
+    func getPostString(params:[String:Any]) -> String
+    {
+        var data = [String]()
+        for(key, value) in params
+        {
+            data.append(key + "=\(value)")
+        }
+        return data.map { String($0) }.joined(separator: "&")
+    }
 }
