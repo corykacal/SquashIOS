@@ -29,7 +29,6 @@
 		8B6A317F23CC360D004C34DD /* SquashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A317E23CC360D004C34DD /* SquashService.swift */; };
 		8B6A318123CC3ECC004C34DD /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A318023CC3ECC004C34DD /* MainViewModel.swift */; };
 		8B700F3D23DE4B1B00E33653 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B700F3C23DE4B1B00E33653 /* GoogleService-Info.plist */; };
-		8B700F3F23DE4D7A00E33653 /* Arrow-down.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8B700F3E23DE4D7A00E33653 /* Arrow-down.svg */; };
 		8B700F4123DEAE6800E33653 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B700F4023DEAE6800E33653 /* Spinner.swift */; };
 		8B700F4323DEC90300E33653 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B700F4223DEC90300E33653 /* Subject.swift */; };
 		8B700F4523DECB0200E33653 /* SubjectListing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B700F4423DECB0200E33653 /* SubjectListing.swift */; };
@@ -89,7 +88,6 @@
 		8B6A317E23CC360D004C34DD /* SquashService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquashService.swift; sourceTree = "<group>"; };
 		8B6A318023CC3ECC004C34DD /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		8B700F3C23DE4B1B00E33653 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		8B700F3E23DE4D7A00E33653 /* Arrow-down.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Arrow-down.svg"; path = "../../../../Desktop/Arrow-down.svg"; sourceTree = "<group>"; };
 		8B700F4023DEAE6800E33653 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		8B700F4223DEC90300E33653 /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
 		8B700F4423DECB0200E33653 /* SubjectListing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectListing.swift; sourceTree = "<group>"; };
@@ -213,7 +211,6 @@
 				8B6A314023CC2672004C34DD /* AppDelegate.swift */,
 				8B6A314223CC2672004C34DD /* SceneDelegate.swift */,
 				8B6A314723CC2672004C34DD /* ContentView.swift */,
-				8B700F3E23DE4D7A00E33653 /* Arrow-down.svg */,
 				8BEC48B923D7F1D3001CF80A /* FullScreen.swift */,
 				8B6A314923CC2676004C34DD /* Assets.xcassets */,
 				8B700F3C23DE4B1B00E33653 /* GoogleService-Info.plist */,
@@ -397,7 +394,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B6A315023CC2676004C34DD /* LaunchScreen.storyboard in Resources */,
-				8B700F3F23DE4D7A00E33653 /* Arrow-down.svg in Resources */,
 				8B700F3D23DE4B1B00E33653 /* GoogleService-Info.plist in Resources */,
 				8B6A314D23CC2676004C34DD /* Preview Assets.xcassets in Resources */,
 				8B6A314A23CC2676004C34DD /* Assets.xcassets in Resources */,
