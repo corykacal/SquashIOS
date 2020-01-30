@@ -13,13 +13,22 @@ struct ContentView: View {
     
     @ObservedObject var mainViewModel: MainViewModel
 
+    
+    
  
     var body: some View {
+        ZStack {
+            
+            Color.yellow
+                .edgesIgnoringSafeArea(.all)
+            
+            Color("ColorBackground")
+            
             TabView(selection: $selection){
                 PostsList(mainViewModel: mainViewModel)
                     .tabItem {
                         VStack {
-                            Image("first")
+                            Image(systemName: "text.bubble")
                             Text("Posts")
                         }
                     }
@@ -29,13 +38,14 @@ struct ContentView: View {
                     .font(.title)
                     .tabItem {
                         VStack {
-                            Image("second")
+                            Image(systemName: "person.crop.circle")
                             Text("Profile")
                         }
                     }
                     .tag(1)
         
             }
+        }
     }
 }
 

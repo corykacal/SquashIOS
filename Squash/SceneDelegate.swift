@@ -11,6 +11,13 @@ import SwiftUI
 import Firebase
 import MapKit
 
+
+class HostingController: UIHostingController<ContentView> {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -32,9 +39,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let service = SquashService()
                 UITableView.appearance().separatorColor = UIColor(named: "ColorBackground")
                 UITableView.appearance().backgroundColor = UIColor(named: "ColorBackground")
+                UITabBar.appearance().barTintColor = UIColor.systemYellow
 
                 let mainViewModel = MainViewModel(service: service, user: authResult)
-                mainViewModel.fetchPosts(number_of_posts: 40, page_number: 1)
+                mainViewModel.fetchPosts(number_of_posts: 10, page_number: 1)
                 mainViewModel.fetchSubjects()
 
 

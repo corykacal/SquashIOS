@@ -21,6 +21,7 @@ class MainViewModel: ObservableObject {
     @Published var comments = [Post]()
     @Published var user = Auth.auth().currentUser
     @Published var subjects = [Subject(subject: "All", color: nil)]
+    @Published var userData = UserData(totalUp: 0, totalDown: 0, postUp: 0, postDown: 0, commentUp: 0, commentDown: 0, postWithoutImage: 0, postWithImage: 0, totalComments: 0, totalPosts: 0, pointsGiven: 0, pointsTaken: 0)
         
     init(service: SquashService, user: User?) {
         self.service = service
@@ -105,6 +106,19 @@ class MainViewModel: ObservableObject {
                 case .success(let posts):
                     print("LOADING---------------------------------------")
                     self?.posts.append(contentsOf: posts)
+                case .failure:
+                    print("fail")
+                }
+            }
+        }
+    }
+    
+    func fetchUserData() {
+        service.getUserData(for: getUid()!) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let userData):
+                    self?.userData = userData[0]
                 case .failure:
                     print("fail")
                 }

@@ -56,6 +56,35 @@ class SquashService {
         }.resume()
     }
     
+    func getUserData(for opuuid: String, completion: @escaping (Result<[UserData], Error>) -> Void) {
+        var components = URLComponents()
+        components.scheme = "http"
+        components.host = self.base_url
+        components.port = 5000
+        components.path = "/api/user/"
+        components.queryItems = [
+            URLQueryItem(name: "opuuid", value: opuuid),
+        ]
+        
+        guard let url = components.url else {
+            preconditionFailure("shit broke")
+        }
+        
+        session.dataTask(with: url) { [weak self] data, _, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                do {
+                    let data = data ?? Data()
+                    let response = try self?.decoder.decode(UserDataListing.self, from: data)
+                    completion(.success(response?.userData ?? [UserData(totalUp: 0, totalDown: 0, postUp: 0, postDown: 0, commentUp: 0, commentDown: 0, postWithoutImage: 0, postWithImage: 0, totalComments: 0, totalPosts: 0, pointsGiven: 0, pointsTaken: 0)]))
+                } catch {
+                    completion(.failure(error))
+                }
+            }
+        }.resume()
+    }
+    
     
     func getComments(for opuuid: String, postNumber: Int, latitude: Double, longitude: Double, completion: @escaping (Result<[Post], Error>) -> Void) {
         

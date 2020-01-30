@@ -37,14 +37,15 @@ struct PostsList: View {
 
     //Pagination stuff!
     @State private var isLoading: Bool = false
-    @State private var page: Int = 2
-    private let pageSize: Int = 40
-    private let offset: Int = 9
+    @State private var page: Int = 1
+    private let pageSize: Int = 10
+    private let offset: Int = 6
 
 
     
     var body: some View {
         ZStack {
+            Color.yellow
             //ZStack for the floating action button
             NavigationView {
                 List {
@@ -61,12 +62,6 @@ struct PostsList: View {
                         .listRowInsets(.init(top: 8, leading: 10, bottom: 8, trailing: 10))
                         
                     }.listRowBackground(Color("ColorBackground"))
-                    
-                    if self.isLoading {
-                        Divider()
-                        Text("Loading ...")
-                            .padding(.vertical)
-                    }
  
                 }
                     
@@ -95,6 +90,7 @@ struct PostsList: View {
 
             VStack {
                 Spinner(items: mainViewModel.subjects)
+                    .padding(.bottom, 10)
                 Spacer()
 
             }
@@ -144,7 +140,6 @@ extension PostsList {
         if mainViewModel.posts.isThresholdItem(offset: offset,
                                  item: item) {
             isLoading = true
-            print("listItemAppears_-_-_-_-_-_-_-_-_-_-_-_-_")
             
             /*
                 Simulated async behaviour:
