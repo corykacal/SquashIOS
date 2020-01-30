@@ -25,7 +25,7 @@ struct ContentView: View {
                     }
                     .tag(0)
                 //.edgesIgnoringSafeArea(.all)
-                Text("Profile")
+                Profile(mainViewModel: mainViewModel)
                     .font(.title)
                     .tabItem {
                         VStack {
