@@ -17,7 +17,7 @@ class MainViewModel: ObservableObject {
     
     
     @Published var showFullScreen = false
-    @Published var posts = [Post(contents: "", id: 0, timestamp: Date(), subject: nil, imageuuid: nil, commentCount: 0, points: 0)]
+    @Published var posts = [Post(contents: "", id: 0, timestamp: Date(), subject: nil, imageuuid: nil, commentCount: 0, points: 0, decision: nil)]
     @Published var comments = [Post]()
     @Published var user = Auth.auth().currentUser
     @Published var subjects = [Subject(subject: "All", color: nil)]
@@ -92,6 +92,21 @@ class MainViewModel: ObservableObject {
                     print(response)
                 case .failure:
                     print("error")
+                }
+            }
+        }
+    }
+    
+    func addNewPage(nextPage: Int, numberPosts: Int) {
+        print("fdsafdsafds")
+        service.getRecentPosts(for: getUid()!, number_of_posts: numberPosts, page_number: nextPage, subject: "All", latitude: 30.285610, longitude: -97.737204) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let posts):
+                    print("LOADING---------------------------------------")
+                    self?.posts.append(contentsOf: posts)
+                case .failure:
+                    print("fail")
                 }
             }
         }

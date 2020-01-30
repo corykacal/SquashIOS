@@ -12,7 +12,7 @@ import SwiftSVG
 
 
 struct SinglePost: View {
-    let post: Post
+    @Binding var post: Post
     
     @EnvironmentObject var mainViewModel: MainViewModel
     
@@ -23,7 +23,8 @@ struct SinglePost: View {
             NavigationView {
                 ScrollView {
                     VStack {
-                        PostRow(post: self.post, cropped: false).environmentObject(self.mainViewModel)
+                        PostRow(post: self.$post, cropped: false).environmentObject(self.mainViewModel)
+                            .padding(9)
 
                         Divider().padding(.top, 5)
                             .foregroundColor(Color.yellow)

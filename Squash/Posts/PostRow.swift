@@ -11,12 +11,15 @@ import SwiftSVG
 import UIKit
 
 
+
+
 struct PostRow: View {
-    let post: Post
+    @Binding var post: Post
     let cropped: Bool
         
     @EnvironmentObject var mainViewModel: MainViewModel
 
+    
     
     private func getTimeSince(date: Date) -> String {
         let seconds = Int(abs(date.timeIntervalSinceNow))
@@ -38,19 +41,30 @@ struct PostRow: View {
     
     var body: some View {
         
-        VStack {
+        VStack(alignment: .leading) {
                
             if !(self.post.subject==nil) {
-                ZStack {
-                    Text(self.post.subject!)
-                    Rectangle().foregroundColor(Color.yellow)
-                }
+                Text(self.post.subject!.uppercased())
+                    .background(Rectangle()
+                        .foregroundColor(Color.yellow)
+                        .frame(width: 1000, height: 20, alignment: .center)
+                    )
+                    .foregroundColor(Color.white)
+                    .font(.system(size: 12, weight: .bold))
+                    .padding(.leading, 5)
+                    .padding(.top, 2.5)
             }
             
-            HStack {
+            HStack(alignment: .top) {
                 
-                VStack {
+                VStack(alignment: .leading) {
                     Text(post.contents)
+                        .font(.system(size: 18))
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 8)
+                    
+                    Spacer()
+                    
                     //Image attatched to the post
                     if self.post.imageuuid != nil {
                         //display full image for single post or not
@@ -77,16 +91,72 @@ struct PostRow: View {
                             .padding([.horizontal], 20)
                         }
                         
+                    }
+                    
+                    Spacer()
+                    
+                    HStack {
                         Text(getTimeSince(date: self.post.timestamp))
+                            .font(.system(size: 13))
+                            .padding(.bottom, 5)
+                            .padding(.leading, 7)
+                            .foregroundColor(Color("ColorMeta"))
+
+                        Image(systemName: "text.bubble.fill")
+                            .font(.system(size: 12.0, weight: .bold))
+                            .foregroundColor(Color.black)
+                            .opacity(0.2)
+                            .padding(.bottom, 3)
+                            .padding(.trailing, -4)
+
+                        if self.post.commentCount != nil {
+                            Text(String(self.post.commentCount!))
+                                .font(.system(size: 13))
+                                .padding(.bottom, 5)
+                                .foregroundColor(Color("ColorMeta"))
+                        }
+                        
+                        Spacer()
                     }
                 }
                 
-                Spacer()
-                VStack {
+                VStack(alignment: .center) {
+                    Spacer()
                     Image(systemName: "chevron.up")
+                        .font(.system(size: 32, weight: .medium))
+                        .foregroundColor(self.post.decision==true ? Color.green : Color("ColorMeta"))
+                        .onTapGesture {
+                            if(self.decision==true) {
+                                self.post.decision = nil
+                                self.mainViewModel.makeDecision(decision: nil, post_number: self.post.id)
+                            } else {
+                                self.post.decision = true
+
+                                self.mainViewModel.makeDecision(decision: true, post_number: self.post.id)
+                            }
+                        }
                     Text(String(self.post.points))
+                        .foregroundColor((self.post.points<0) ? Color.red : Color.green)
+                        .padding(.trailing, 1)
                     Image(systemName: "chevron.down")
+                        .font(.system(size: 32, weight: .medium))
+                        .foregroundColor(self.post.decision==false ? Color.red : Color("ColorMeta"))
+                        .onTapGesture {
+
+                            if(self.decision==false) {
+                                self.post.decision = nil
+                                
+                                self.mainViewModel.makeDecision(decision: nil, post_number: self.post.id)
+                            } else {
+                                self.post.decision = false
+
+                                self.mainViewModel.makeDecision(decision: false, post_number: self.post.id)
+                            }
+                        }
+
+                    Spacer()
                 }
+                Spacer()
                 
             }
 
@@ -97,20 +167,13 @@ struct PostRow: View {
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.1), lineWidth: 1)
-        ).background(RoundedRectangle(cornerRadius: 10).fill(Color.white)
+        ).background(RoundedRectangle(cornerRadius: 10).fill(Color("ColorPost"))
             .shadow(radius: 2, x: 0.5, y: 2.5))
-            .padding([.top, .horizontal], 5)
-            .padding(.horizontal, 5)
     }
     
-    private func setStates() {
-        self.decision = self.post.decision
-        print(self.post.contents)
-        print(self.post.decision)
-    }
 }
 
-
+/*
 #if DEBUG
 struct PostRow_Previews: PreviewProvider {
     static var previews: some View {
@@ -118,3 +181,4 @@ struct PostRow_Previews: PreviewProvider {
     }
 }
 #endif
+*/

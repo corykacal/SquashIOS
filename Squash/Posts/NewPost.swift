@@ -35,7 +35,7 @@ struct NewPost: View {
 
                 Button(action: {
                     self.mainViewModel.makePost(imageuuid: nil, reply_to: nil, contents: self.content, subject: nil)
-                    self.mainViewModel.fetchPosts(number_of_posts: 40, page_number: 1)
+                    self.mainViewModel.fetchPosts(number_of_posts: 4, page_number: 1)
                     self.isModal = false
                 }, label: {
                     Text("Post")

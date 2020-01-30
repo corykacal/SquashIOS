@@ -8,30 +8,70 @@
 
 import SwiftUI
 
+
+extension RandomAccessCollection where Self.Element: Identifiable {
+    func isThresholdItem<Item: Identifiable>(offset: Int, item: Item) -> Bool {
+        print("isThresholdItem--------------------------")
+        guard !isEmpty else {
+            return false
+        }
+        
+        guard let itemIndex = firstIndex(where: { AnyHashable($0.id) == AnyHashable(item.id) }) else {
+            return false
+        }
+        
+        let distance = self.distance(from: itemIndex, to: endIndex)
+        let offset = offset < count ? offset : count - 1
+        return offset == (distance - 1)
+    }
+}
+
+
+
+
 struct PostsList: View {
     @ObservedObject var mainViewModel: MainViewModel
     
     @State private var subject = "All"
     @State var isModal: Bool = false
 
+    //Pagination stuff!
+    @State private var isLoading: Bool = false
+    @State private var page: Int = 2
+    private let pageSize: Int = 40
+    private let offset: Int = 9
+
+
     
     var body: some View {
         ZStack {
             //ZStack for the floating action button
             NavigationView {
-                ScrollView {
-                    VStack {
-                        ForEach(mainViewModel.posts) { post in
-                            NavigationLink(destination: SinglePost(post: post).environmentObject(self.mainViewModel)) {
-                                PostRow(post: post, cropped: true).environmentObject(self.mainViewModel)
+                List {
+                    ForEach(mainViewModel.posts.indices, id: \.self) { index in
+                        ZStack {
+                            PostRow(post: self.$mainViewModel.posts[index], cropped: true).environmentObject(self.mainViewModel)
+
+                            NavigationLink(destination: SinglePost(post: self.$mainViewModel.posts[index]).environmentObject(self.mainViewModel)) {
+                                EmptyView()
                             }.buttonStyle(PlainButtonStyle())
-                        }
-                    }.padding(.bottom, 100)
-                    .padding(.top, 10)
+                        }.onAppear(perform: {
+                            self.listItemAppears(self.mainViewModel.posts[index])
+                        })
+                        .listRowInsets(.init(top: 8, leading: 10, bottom: 8, trailing: 10))
+                        
+                    }.listRowBackground(Color("ColorBackground"))
+                    
+                    if self.isLoading {
+                        Divider()
+                        Text("Loading ...")
+                            .padding(.vertical)
+                    }
+ 
                 }
-                .background(Image("Background"))
+                    
                     .background(NavigationConfigurator { nc in
-                        nc.navigationBar.barTintColor = UIColor.yellow
+                        nc.navigationBar.barTintColor = UIColor.systemYellow
                      })
                 .navigationBarItems(leading:
                 HStack {
@@ -50,6 +90,7 @@ struct PostsList: View {
                     .navigationBarTitle(Text("Names"), displayMode: .inline)
 
             }
+                
             .navigationViewStyle(StackNavigationViewStyle())
 
             VStack {
@@ -89,13 +130,38 @@ struct PostsList: View {
     }
     
     private func fetchPosts() {
-        mainViewModel.fetchPosts(number_of_posts: 40, page_number: 0)
+        mainViewModel.fetchPosts(number_of_posts: pageSize, page_number: 1)
     }
     
     private func fetchSubjects() {
         mainViewModel.fetchSubjects()
     }
 }
+
+
+extension PostsList {
+    private func listItemAppears<Item: Identifiable>(_ item: Item) {
+        if mainViewModel.posts.isThresholdItem(offset: offset,
+                                 item: item) {
+            isLoading = true
+            print("listItemAppears_-_-_-_-_-_-_-_-_-_-_-_-_")
+            
+            /*
+                Simulated async behaviour:
+                Creates items for the next page and
+                appends them to the list after a short delay
+             */
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                self.page += 1
+                self.mainViewModel.addNewPage(nextPage: self.page, numberPosts: self.pageSize)
+                self.isLoading = false
+            }
+        }
+    }
+}
+
+
+
 
 
 struct NavigationConfigurator: UIViewControllerRepresentable {

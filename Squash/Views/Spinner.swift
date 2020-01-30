@@ -54,7 +54,11 @@ struct Spinner: View {
             
             }
         }
-        .background(LinearGradient(gradient: .init(colors: [.orange, .yellow]), startPoint: .top, endPoint: .bottom))
+        .background(expand ? Color("ColorBackground") : Color.yellow)
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.1), lineWidth: 4)
+            )
         .cornerRadius(20)
         .padding(7)
         .animation(.spring())
