@@ -79,24 +79,26 @@ struct Profile: View {
                 ).background(RoundedRectangle(cornerRadius: 10).fill(Color("ColorPost"))
                     .shadow(radius: 2, x: 0.5, y: 2.5))
                     .padding(.top, 13)
-                
-                VStack {
-                    HStack {
-                        Text("My Posts")
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                            .font(.system(size: 32, weight: .medium))
-                            .foregroundColor(Color("ColorMeta"))
+                NavigationLink(destination: UserPosts(mainViewModel: self.mainViewModel)) {
+                    VStack {
+                            HStack {
+                                Text("My Posts")
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .font(.system(size: 32, weight: .medium))
+                                    .foregroundColor(Color("ColorMeta"))
 
-                    }.padding(.horizontal, 25)
-                }
-                .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: 100, alignment: .center)
-                .cornerRadius(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.1), lineWidth: 1)
-                ).background(RoundedRectangle(cornerRadius: 10).fill(Color("ColorPost"))
-                    .shadow(radius: 2, x: 0.5, y: 2.5))
+                            }.padding(.horizontal, 25)
+
+                    }
+                    .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 0, idealHeight: 100, maxHeight: 100, alignment: .center)
+                    .cornerRadius(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.1), lineWidth: 1)
+                    ).background(RoundedRectangle(cornerRadius: 10).fill(Color("ColorPost"))
+                        .shadow(radius: 2, x: 0.5, y: 2.5))
+                }.buttonStyle(PlainButtonStyle())
 
                 
                 Spacer()
@@ -116,7 +118,7 @@ struct Profile: View {
                 }.foregroundColor(.blue)
             })
                 // 5.
-                .navigationBarTitle(Text("Names"), displayMode: .inline)
+                .navigationBarTitle(Text("User Profile"), displayMode: .inline)
 
                 .onAppear(perform: updateUser)
             
