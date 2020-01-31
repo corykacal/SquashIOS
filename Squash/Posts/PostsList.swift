@@ -11,7 +11,6 @@ import SwiftUI
 
 extension RandomAccessCollection where Self.Element: Identifiable {
     func isThresholdItem<Item: Identifiable>(offset: Int, item: Item) -> Bool {
-        print("isThresholdItem--------------------------")
         guard !isEmpty else {
             return false
         }
@@ -62,27 +61,21 @@ struct PostsList: View {
                         .listRowInsets(.init(top: 8, leading: 10, bottom: 8, trailing: 10))
                         
                     }.listRowBackground(Color("ColorBackground"))
- 
                 }
                     
                     .background(NavigationConfigurator { nc in
                         nc.navigationBar.barTintColor = UIColor.systemYellow
                      })
-                .navigationBarItems(leading:
+                .navigationBarItems(trailing:
                 HStack {
-                    Button(action: {}) {
-                        Image(systemName: "minus.square.fill")
-                            .font(.largeTitle)
-                    }.foregroundColor(.pink)
-                }, trailing:
-                HStack {
-                    Button(action: {}) {
-                        Image(systemName: "plus.square.fill")
-                            .font(.largeTitle)
-                    }.foregroundColor(.blue)
+                    Text(String(self.mainViewModel.userData.totalUp))
+                        .font(.system(size: 20, weight: .medium))
+                    Image(systemName: "arrow.up")
+                        .font(.system(size: 20, weight: .medium))
+                    
                 })
                     // 5.
-                    .navigationBarTitle(Text("Names"), displayMode: .inline)
+                    .navigationBarTitle(Text("Posts"), displayMode: .inline)
 
             }
                 
@@ -103,13 +96,13 @@ struct PostsList: View {
                     Button(action: {
                         self.isModal = true
                         }, label: {
-                            Text("+")
+                            Image(systemName: "square.and.pencil")
                                 .font(.system(.largeTitle))
                                 .frame(width: 77, height: 70)
-                                .foregroundColor(Color.white)
+                                .foregroundColor(Color.black)
                                 .padding(.bottom, 7)
                         })
-                        .background(Color.blue)
+                        .background(Color("ColorPost"))
                         .cornerRadius(38.5)
                         .padding()
                         .opacity(0.7)

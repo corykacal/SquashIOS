@@ -41,9 +41,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 UITableView.appearance().backgroundColor = UIColor(named: "ColorBackground")
                 UITabBar.appearance().barTintColor = UIColor.systemYellow
 
+                
                 let mainViewModel = MainViewModel(service: service, user: authResult)
                 mainViewModel.fetchPosts(number_of_posts: 10, page_number: 1)
                 mainViewModel.fetchSubjects()
+                mainViewModel.fetchUserData()
 
 
                 window.rootViewController = UIHostingController(rootView: ContentView(mainViewModel: mainViewModel))

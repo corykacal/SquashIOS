@@ -18,6 +18,7 @@ struct Post: Identifiable {
     var commentCount: Int?
     var points: Int
     var decision: Bool?
+    var color: Int?
 }
 
 extension Post: Decodable {
@@ -31,6 +32,7 @@ extension Post: Decodable {
         case up = "up"
         case down = "down"
         case decision = "descision"
+        case color = "color"
     }
     
     init(from decoder: Decoder) throws {
@@ -51,6 +53,8 @@ extension Post: Decodable {
         let down = try values.decode(Int.self, forKey: .down)
         points = up-down
         decision = try values.decodeIfPresent(Bool.self, forKey: .decision)
+        color = try values.decodeIfPresent(Int.self, forKey: .color)
+
     }
 }
 

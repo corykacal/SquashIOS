@@ -10,6 +10,18 @@ import SwiftUI
 import SwiftSVG
 import UIKit
 
+extension Color {
+    init(rgbValue: Int) {
+
+        let r = (rgbValue & 0xff0000) >> 16
+        let g = (rgbValue & 0xff00) >> 8
+        let b = rgbValue & 0xff
+
+
+        self.init(red: Double(r) / 0xff, green: Double(g) / 0xff, blue: Double(b) / 0xff)
+
+    }
+}
 
 
 
@@ -46,7 +58,7 @@ struct PostRow: View {
             if !(self.post.subject==nil) {
                 Text(self.post.subject!.uppercased())
                     .background(Rectangle()
-                        .foregroundColor(Color.yellow)
+                        .foregroundColor((self.post.subject=="STICKY") ? Color.blue : (Color(rgbValue: self.post.color ?? 16763904)))
                         .frame(width: 1000, height: 20, alignment: .center)
                     )
                     .foregroundColor(Color.white)
@@ -124,6 +136,7 @@ struct PostRow: View {
                     Spacer()
                     Image(systemName: "chevron.up")
                         .font(.system(size: 32, weight: .medium))
+                        .opacity(0.6)
                         .foregroundColor(self.post.decision==true ? Color.green : Color("ColorMeta"))
                         .onTapGesture {
                             if(self.decision==true) {
@@ -140,6 +153,7 @@ struct PostRow: View {
                         .padding(.trailing, 1)
                     Image(systemName: "chevron.down")
                         .font(.system(size: 32, weight: .medium))
+                        .opacity(0.6)
                         .foregroundColor(self.post.decision==false ? Color.red : Color("ColorMeta"))
                         .onTapGesture {
 
@@ -167,7 +181,7 @@ struct PostRow: View {
         .overlay(
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.1), lineWidth: 1)
-        ).background(RoundedRectangle(cornerRadius: 10).fill(Color("ColorPost"))
+        ).background(RoundedRectangle(cornerRadius: 10).fill((self.post.subject=="STICKY") ? Color("Sticky") : Color("ColorPost"))
             .shadow(radius: 2, x: 0.5, y: 2.5))
     }
     

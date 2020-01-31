@@ -56,6 +56,39 @@ class SquashService {
         }.resume()
     }
     
+    func getUserPosts(for opuuid: String, number_of_posts: Int, page_number: Int, completion: @escaping (Result<[Post], Error>) -> Void) {
+        
+        var components = URLComponents()
+        components.scheme = "http"
+        components.host = self.base_url
+        components.port = 5000
+        components.path = "/api/my_post/"
+        components.queryItems = [
+            URLQueryItem(name: "opuuid", value: opuuid),
+            URLQueryItem(name: "number_of_posts", value: String(number_of_posts)),
+            URLQueryItem(name: "page_number", value: String(page_number)),
+        ]
+        
+        guard let url = components.url else {
+            preconditionFailure("shit broke")
+        }
+        
+        session.dataTask(with: url) { [weak self] data, _, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                do {
+                    let data = data ?? Data()
+                    let response = try self?.decoder.decode(Listing.self, from: data)
+                    completion(.success(response?.posts ?? []))
+                } catch {
+                    completion(.failure(error))
+                }
+            }
+        }.resume()
+    }
+
+    
     func getUserData(for opuuid: String, completion: @escaping (Result<[UserData], Error>) -> Void) {
         var components = URLComponents()
         components.scheme = "http"

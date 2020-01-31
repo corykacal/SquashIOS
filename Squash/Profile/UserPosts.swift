@@ -20,13 +20,12 @@ struct UserPosts: View {
     private let offset: Int = 6
     
     var body: some View {
-       NavigationView {
            List {
-               ForEach(mainViewModel.posts.indices, id: \.self) { index in
+               ForEach(mainViewModel.userPosts.indices, id: \.self) { index in
                    ZStack {
-                       PostRow(post: self.$mainViewModel.posts[index], cropped: true).environmentObject(self.mainViewModel)
+                       PostRow(post: self.$mainViewModel.userPosts[index], cropped: true).environmentObject(self.mainViewModel)
 
-                       NavigationLink(destination: SinglePost(post: self.$mainViewModel.posts[index]).environmentObject(self.mainViewModel)) {
+                       NavigationLink(destination: SinglePost(post: self.$mainViewModel.userPosts[index]).environmentObject(self.mainViewModel)) {
                            EmptyView()
                        }.buttonStyle(PlainButtonStyle())
                    }.onAppear(perform: {
@@ -36,8 +35,13 @@ struct UserPosts: View {
                    
                }.listRowBackground(Color("ColorBackground"))
 
-           }
-        }
+        }.onAppear(perform: fetchMyPost)
+        
+    }
+    
+    
+    private func fetchMyPost() {
+        self.mainViewModel.fetchMyPosts(number_of_posts: 100, page_number: page)
     }
 }
 

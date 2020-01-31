@@ -19,6 +19,7 @@ class MainViewModel: ObservableObject {
     @Published var showFullScreen = false
     @Published var posts = [Post(contents: "", id: 0, timestamp: Date(), subject: nil, imageuuid: nil, commentCount: 0, points: 0, decision: nil)]
     @Published var comments = [Post]()
+    @Published var userPosts = [Post(contents: "", id: 0, timestamp: Date(), subject: nil, imageuuid: nil, commentCount: 0, points: 0, decision: nil)]
     @Published var user = Auth.auth().currentUser
     @Published var subjects = [Subject(subject: "All", color: nil)]
     @Published var userData = UserData(totalUp: 0, totalDown: 0, postUp: 0, postDown: 0, commentUp: 0, commentDown: 0, postWithoutImage: 0, postWithImage: 0, totalComments: 0, totalPosts: 0, pointsGiven: 0, pointsTaken: 0)
@@ -30,6 +31,19 @@ class MainViewModel: ObservableObject {
     
     func getUid() -> String? {
         return self.user?.uid
+    }
+    
+    func fetchMyPosts(number_of_posts: Int, page_number: Int) {
+        service.getUserPosts(for: getUid()!, number_of_posts: number_of_posts, page_number: page_number) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let posts):
+                    self?.userPosts = posts
+                case .failure:
+                    self?.userPosts = []
+                }
+            }
+        }
     }
     
     func fetchPosts(number_of_posts: Int, page_number: Int) {

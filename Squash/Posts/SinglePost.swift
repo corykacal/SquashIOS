@@ -34,8 +34,11 @@ struct SinglePost: View {
                             CommentRow(post: post).padding(.vertical, 5)
                         }
                         
-                    }
+                    }.padding(.top, 50)
+                        .padding(.bottom, 200)
                 }.background(Image("Background"))
+                .navigationBarHidden(true)
+                    .edgesIgnoringSafeArea(.all)
 
             }.onAppear(perform: fetchComments)
                 .onDisappear(perform: resetView)
