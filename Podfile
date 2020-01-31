@@ -19,6 +19,10 @@ target 'Squash' do
   pod 'SDWebImageSwiftUI'
   pod 'Alamofire'
 
+  #pull down refresh from github
+  pod "SwiftUIRefresh"
+
+
 
 
   target 'SquashTests' do

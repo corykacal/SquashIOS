@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import SwiftUIRefresh
 
 
 extension RandomAccessCollection where Self.Element: Identifiable {
@@ -44,6 +45,9 @@ struct PostsList: View {
     
     //hot/recent selector stuff!
     @State private var selectorIndex: Int = 0
+    
+    //for the refresher!
+    @State private var isShowing: Bool = false
 
 
     
@@ -62,13 +66,23 @@ struct PostsList: View {
                                 EmptyView()
                             }.buttonStyle(PlainButtonStyle())
                         }.onAppear(perform: {
-                            self.isSingle = false
+                            //TODO bug with this index otu of range for some reason
                             self.listItemAppears(self.mainViewModel.posts[index])
                         })
                         .listRowInsets(.init(top: 8, leading: 10, bottom: 8, trailing: 10))
                         
                     }.listRowBackground(Color("ColorBackground"))
-                }.padding(.top, 26)
+                }.pullToRefresh(isShowing: $isShowing) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.mainViewModel.fetchPosts(number_of_posts: self.pageSize, page_number: 1) { success in
+                            if(success) {
+                                self.page = 2
+                            }
+                            self.isShowing = false
+                        }
+                    }
+                }
+                .padding(.top, 26)
                     
                     .background(NavigationConfigurator { nc in
                         nc.navigationBar.barTintColor = UIColor.systemYellow
@@ -82,6 +96,9 @@ struct PostsList: View {
                     
                 })
                     .navigationBarTitle(Text("Posts"), displayMode: .inline)
+                    .onAppear(perform: {
+                        self.isSingle = false
+                    })
 
             }
                 
@@ -98,7 +115,7 @@ struct PostsList: View {
                 .background(Color.yellow)
                 .padding(.top, 40)
                 Spacer()
-            }
+            }.isHidden(isSingle)
             
             VStack(spacing: 0) {
                 Spinner(items: mainViewModel.subjects)
@@ -136,7 +153,9 @@ struct PostsList: View {
     }
     
     private func fetchPosts() {
-        mainViewModel.fetchPosts(number_of_posts: pageSize, page_number: 1)
+        mainViewModel.fetchPosts(number_of_posts: pageSize, page_number: 1) { success in
+            
+        }
     }
     
     private func fetchSubjects() {

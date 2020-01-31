@@ -22,21 +22,17 @@ struct NewPost: View {
             VStack(spacing: 5) {
 
 
-                MultilineTextField(text: $content)
-                    .cornerRadius(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.1), lineWidth: 1)
-                    ).background(RoundedRectangle(cornerRadius: 10).fill(Color.white)
-                        .shadow(radius: 2, x: 0.5, y: 2.5))
-                        .padding([.top, .horizontal], 5)
-                        .padding(.horizontal, 8)
+                TextField("meme", text: $content)
 
 
                 Button(action: {
-                    self.mainViewModel.makePost(imageuuid: nil, reply_to: nil, contents: self.content, subject: nil)
-                    self.mainViewModel.fetchPosts(number_of_posts: 4, page_number: 1)
-                    self.isModal = false
+                    self.mainViewModel.makePost(imageuuid: nil, reply_to: nil, contents: self.content, subject: nil) { success in
+                        if(success) {
+                            self.mainViewModel.fetchMyPosts(number_of_posts: 40, page_number: 2)
+                            self.isModal = false
+                        }
+                    }
+                    
                 }, label: {
                     Text("Post")
                         .font(.system(.largeTitle))

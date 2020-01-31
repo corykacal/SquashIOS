@@ -219,7 +219,6 @@ class SquashService {
 
         request.allHTTPHeaderFields = headers
 
-        print(opuuid)
         let postString = self.getPostString(params: json)
         request.httpBody = postString.data(using: .utf8)
         

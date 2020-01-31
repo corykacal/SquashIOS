@@ -46,14 +46,17 @@ class MainViewModel: ObservableObject {
         }
     }
     
-    func fetchPosts(number_of_posts: Int, page_number: Int) {
+    func fetchPosts(number_of_posts: Int, page_number: Int, completion: @escaping (Bool) -> Void) {
         service.getRecentPosts(for: getUid()!, number_of_posts: number_of_posts, page_number: page_number, subject: "All", latitude: 30.285610, longitude: -97.737204) { [weak self] result in
-            DispatchQueue.main.async {
+            DispatchQueue.main.sync {
                 switch result {
                 case .success(let posts):
+                    print("setting post now!!!!")
                     self?.posts = posts
+                    completion(true)
                 case .failure:
                     self?.posts = []
+                    completion(false)
                 }
             }
         }
@@ -99,14 +102,16 @@ class MainViewModel: ObservableObject {
         }
     }
     
-    func makePost(imageuuid: String?, reply_to: Int?, contents: String, subject: String?) {
+    func makePost(imageuuid: String?, reply_to: Int?, contents: String, subject: String?, completion: @escaping (Bool) -> Void) {
         service.makePost(for: getUid()!, imageuuid: imageuuid, reply_to: reply_to, contents: contents, subject: subject, latitude: 30.285610, longitude: -97.737204) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
                     print(response)
+                    completion(true)
                 case .failure:
                     print("error")
+                    completion(false)
                 }
             }
         }

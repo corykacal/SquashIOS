@@ -16,7 +16,7 @@ struct PostResponse {
 
 extension PostResponse: Decodable {
     enum CodingKeys: String, CodingKey {
-        case response = "message"
+        case response = "results"
     }
     
     init(from decoder: Decoder) throws {
