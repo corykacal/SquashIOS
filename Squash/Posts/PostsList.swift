@@ -33,12 +33,17 @@ struct PostsList: View {
     
     @State private var subject = "All"
     @State var isModal: Bool = false
+    
+    @State var isSingle: Bool = false
 
     //Pagination stuff!
     @State private var isLoading: Bool = false
     @State private var page: Int = 1
     private let pageSize: Int = 10
     private let offset: Int = 6
+    
+    //hot/recent selector stuff!
+    @State private var selectorIndex: Int = 0
 
 
     
@@ -52,16 +57,18 @@ struct PostsList: View {
                         ZStack {
                             PostRow(post: self.$mainViewModel.posts[index], cropped: true).environmentObject(self.mainViewModel)
 
-                            NavigationLink(destination: SinglePost(post: self.$mainViewModel.posts[index]).environmentObject(self.mainViewModel)) {
+                            NavigationLink(destination: SinglePost(post: self.$mainViewModel.posts[index], isSingle:
+                                self.$isSingle).environmentObject(self.mainViewModel)) {
                                 EmptyView()
                             }.buttonStyle(PlainButtonStyle())
                         }.onAppear(perform: {
+                            self.isSingle = false
                             self.listItemAppears(self.mainViewModel.posts[index])
                         })
                         .listRowInsets(.init(top: 8, leading: 10, bottom: 8, trailing: 10))
                         
                     }.listRowBackground(Color("ColorBackground"))
-                }
+                }.padding(.top, 26)
                     
                     .background(NavigationConfigurator { nc in
                         nc.navigationBar.barTintColor = UIColor.systemYellow
@@ -74,19 +81,29 @@ struct PostsList: View {
                         .font(.system(size: 20, weight: .medium))
                     
                 })
-                    // 5.
                     .navigationBarTitle(Text("Posts"), displayMode: .inline)
 
             }
                 
             .navigationViewStyle(StackNavigationViewStyle())
 
-            VStack {
-                Spinner(items: mainViewModel.subjects)
-                    .padding(.bottom, 10)
-                Spacer()
 
+        
+            VStack() {
+                Picker("Posts", selection: $selectorIndex) {
+                    Text("Recent").tag(0)
+                    Text("Hot").tag(1)
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .background(Color.yellow)
+                .padding(.top, 40)
+                Spacer()
             }
+            
+            VStack(spacing: 0) {
+                Spinner(items: mainViewModel.subjects)
+                Spacer()
+            }.isHidden(isSingle)
             
             VStack {
                 Spacer()
@@ -114,7 +131,7 @@ struct PostsList: View {
                         NewPost(isModal: self.$isModal).environmentObject(self.mainViewModel)
                     })
                 }
-            }
+            }.isHidden(isSingle)
         }
     }
     

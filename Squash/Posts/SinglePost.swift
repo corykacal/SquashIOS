@@ -16,6 +16,7 @@ struct SinglePost: View {
     
     @EnvironmentObject var mainViewModel: MainViewModel
     
+    @Binding var isSingle: Bool
     
 
     
@@ -41,15 +42,15 @@ struct SinglePost: View {
                     .edgesIgnoringSafeArea(.all)
 
             }.onAppear(perform: fetchComments)
-                .onDisappear(perform: resetView)
     }
     
     private func fetchComments() {
+        isSingle = true
         mainViewModel.fetchComments(postNumber: post.id,  latitude: 30.285610, longitude: -97.737204)
     }
     
     private func resetView() {
-        print("closing view!!!!!")
+        isSingle = false
     }
 }
 

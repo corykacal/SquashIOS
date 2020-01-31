@@ -45,6 +45,7 @@ struct ContentView: View {
                     .tag(1)
         
             }.foregroundColor(Color.black)
+                .accentColor(Color.black)
         }
     }
 }

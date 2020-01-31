@@ -13,6 +13,8 @@ struct UserPosts: View {
     
     @ObservedObject var mainViewModel: MainViewModel
     
+    @State var isSingle: Bool = false
+    
     //Pagination stuff!
     @State private var isLoading: Bool = false
     @State private var page: Int = 1
@@ -25,7 +27,7 @@ struct UserPosts: View {
                    ZStack {
                        PostRow(post: self.$mainViewModel.userPosts[index], cropped: true).environmentObject(self.mainViewModel)
 
-                       NavigationLink(destination: SinglePost(post: self.$mainViewModel.userPosts[index]).environmentObject(self.mainViewModel)) {
+                    NavigationLink(destination: SinglePost(post: self.$mainViewModel.userPosts[index], isSingle: self.$isSingle).environmentObject(self.mainViewModel)) {
                            EmptyView()
                        }.buttonStyle(PlainButtonStyle())
                    }.onAppear(perform: {

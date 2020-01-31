@@ -39,6 +39,7 @@ struct Spinner: View {
                         Button(action: {
                             self.currentIndex = index
                             self.expand.toggle()
+                            
                         }) {
                             VStack {
                                 Divider().padding(.horizontal, 20)
@@ -60,7 +61,6 @@ struct Spinner: View {
                     .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.1), lineWidth: 4)
             )
         .cornerRadius(20)
-        .padding(7)
         .animation(.spring())
         .padding(.horizontal, 60)
     }
