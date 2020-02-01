@@ -67,7 +67,7 @@ struct PostsList: View {
                             }.buttonStyle(PlainButtonStyle())
                         }.onAppear(perform: {
                             //TODO bug with this index otu of range for some reason
-                            self.listItemAppears(self.mainViewModel.posts[index])
+                            //self.listItemAppears(self.mainViewModel.posts[index])
                         })
                         .listRowInsets(.init(top: 8, leading: 10, bottom: 8, trailing: 10))
                         
