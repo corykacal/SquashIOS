@@ -75,6 +75,10 @@ class MainViewModel: ObservableObject {
         }
     }
     
+    func clearComments() {
+        self.comments.removeAll()
+    }
+    
     func fetchSubjects() {
         service.getSubjects(for: getUid()!, latitude: 30.285610, longitude: -97.737204) { [weak self] result in
             DispatchQueue.main.async {

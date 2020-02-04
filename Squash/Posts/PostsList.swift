@@ -61,8 +61,7 @@ struct PostsList: View {
                         ZStack {
                             PostRow(post: self.$mainViewModel.posts[index], cropped: true).environmentObject(self.mainViewModel)
 
-                            NavigationLink(destination: SinglePost(post: self.$mainViewModel.posts[index], isSingle:
-                                self.$isSingle).environmentObject(self.mainViewModel)) {
+                            NavigationLink(destination: SinglePost(post: self.$mainViewModel.posts[index], mainViewModel: self.mainViewModel, isSingle: self.$isSingle).environmentObject(self.mainViewModel)) {
                                 EmptyView()
                             }.buttonStyle(PlainButtonStyle())
                         }.onAppear(perform: {

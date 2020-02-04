@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -37,6 +37,7 @@
 		8B700F4523DECB0200E33653 /* SubjectListing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B700F4423DECB0200E33653 /* SubjectListing.swift */; };
 		8B700F4723DF785000E33653 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B700F4623DF785000E33653 /* TextView.swift */; };
 		8B700F4B23DFB78F00E33653 /* PostResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B700F4A23DFB78F00E33653 /* PostResponse.swift */; };
+		8B79E37A23E8FE010041500E /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 8B79E37923E8FE010041500E /* URLImage */; };
 		8BEC48B323D7C4FD001CF80A /* SinglePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEC48B223D7C4FD001CF80A /* SinglePost.swift */; };
 		8BEC48B523D7C9D9001CF80A /* CommentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEC48B423D7C9D9001CF80A /* CommentRow.swift */; };
 		8BEC48B823D7D0E2001CF80A /* NewPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEC48B723D7D0E2001CF80A /* NewPost.swift */; };
@@ -121,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B79E37A23E8FE010041500E /* URLImage in Frameworks */,
 				E85FD761E73003EF4739FF7C /* Pods_Squash.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,9 +291,9 @@
 			children = (
 				8B5D9BBD23CD1C270045B8D4 /* PostsList.swift */,
 				8BEC48B223D7C4FD001CF80A /* SinglePost.swift */,
+				8BEC48B723D7D0E2001CF80A /* NewPost.swift */,
 				8B6A317723CC2871004C34DD /* PostRow.swift */,
 				8BEC48B423D7C9D9001CF80A /* CommentRow.swift */,
-				8BEC48B723D7D0E2001CF80A /* NewPost.swift */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
@@ -346,6 +348,9 @@
 			dependencies = (
 			);
 			name = Squash;
+			packageProductDependencies = (
+				8B79E37923E8FE010041500E /* URLImage */,
+			);
 			productName = Squash;
 			productReference = 8B6A313D23CC2672004C34DD /* Squash.app */;
 			productType = "com.apple.product-type.application";
@@ -421,6 +426,9 @@
 				Base,
 			);
 			mainGroup = 8B6A313423CC2672004C34DD;
+			packageReferences = (
+				8B79E37823E8FE010041500E /* XCRemoteSwiftPackageReference "url-image" */,
+			);
 			productRefGroup = 8B6A313E23CC2672004C34DD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -926,6 +934,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8B79E37823E8FE010041500E /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8B79E37923E8FE010041500E /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B79E37823E8FE010041500E /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		8B6A314423CC2672004C34DD /* Squash.xcdatamodeld */ = {

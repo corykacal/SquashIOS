@@ -14,7 +14,7 @@ import SwiftSVG
 struct SinglePost: View {
     @Binding var post: Post
     
-    @EnvironmentObject var mainViewModel: MainViewModel
+    @ObservedObject var mainViewModel: MainViewModel
     
     @Binding var isSingle: Bool
     
@@ -31,8 +31,10 @@ struct SinglePost: View {
                             .foregroundColor(Color.yellow)
                             .padding(.horizontal, 20)
                         
-                        ForEach(mainViewModel.comments) { post in
-                            CommentRow(post: post).padding(.vertical, 5)
+                        ForEach(mainViewModel.comments) { comment in
+                            CommentRow(post: comment, mainViewModel: self.mainViewModel)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 3)
                         }
                         
                     }.padding(.top, 50)
@@ -42,6 +44,7 @@ struct SinglePost: View {
                     .edgesIgnoringSafeArea(.all)
 
             }.onAppear(perform: fetchComments)
+                .onDisappear(perform: resetView)
     }
     
     private func fetchComments() {
@@ -51,6 +54,7 @@ struct SinglePost: View {
     
     private func resetView() {
         isSingle = false
+        self.mainViewModel.clearComments()
     }
 }
 

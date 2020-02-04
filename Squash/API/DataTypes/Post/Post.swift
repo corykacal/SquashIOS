@@ -19,6 +19,8 @@ struct Post: Identifiable {
     var points: Int
     var decision: Bool?
     var color: Int?
+    var veggie_url: String?
+    var veggie_color: Int?
 }
 
 extension Post: Decodable {
@@ -33,6 +35,8 @@ extension Post: Decodable {
         case down = "down"
         case decision = "descision"
         case color = "color"
+        case veggie_url = "veggie"
+        case veggie_color = "veggie_color"
     }
     
     init(from decoder: Decoder) throws {
@@ -54,7 +58,8 @@ extension Post: Decodable {
         points = up-down
         decision = try values.decodeIfPresent(Bool.self, forKey: .decision)
         color = try values.decodeIfPresent(Int.self, forKey: .color)
-
+        veggie_url = try values.decodeIfPresent(String.self, forKey: .veggie_url)
+        veggie_color = try values.decodeIfPresent(Int.self, forKey: .veggie_color)
     }
 }
 
