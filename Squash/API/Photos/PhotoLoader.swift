@@ -37,7 +37,11 @@ final class PhotoLoader : ObservableObject {
 
             DispatchQueue.main.async {
                 self.data = data
-                PhotoLoader.cache.setObject(data! as NSData, forKey: NSString(string: id!))
+                if(data != nil && id != nil) {
+                PhotoLoader.cache.setObject(data! as NSData,
+                                            forKey: NSString(string: id!))
+            
+                }
             }
         }
     }

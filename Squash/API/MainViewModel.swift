@@ -10,6 +10,7 @@ import Foundation
 import Combine
 import SwiftUI
 import Firebase
+import FirebaseStorage
 
 
 class MainViewModel: ObservableObject {
@@ -31,6 +32,33 @@ class MainViewModel: ObservableObject {
     
     func getUid() -> String? {
         return self.user?.uid
+    }
+    
+    func uploadImage(imageURL: String, uuid: String) {
+        // File located on disk
+        let localFile = URL(string: "file://\(imageURL)")!
+        
+        let storageRef = Storage.storage().reference()
+
+        // Create a reference to the file you want to upload
+        let riversRef = storageRef.child("images/images/"+uuid)
+
+        // Upload the file to the path "images/rivers.jpg"
+        let uploadTask = riversRef.putFile(from: localFile, metadata: nil) { metadata, error in
+          guard let metadata = metadata else {
+            // Uh-oh, an error occurred!
+            return
+          }
+          // Metadata contains file metadata such as size, content-type.
+          let size = metadata.size
+          // You can also access to download URL after upload.
+          riversRef.downloadURL { (url, error) in
+            guard let downloadURL = url else {
+              // Uh-oh, an error occurred!
+              return
+            }
+          }
+        }
     }
     
     func fetchMyPosts(number_of_posts: Int, page_number: Int) {

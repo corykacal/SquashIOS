@@ -15,18 +15,63 @@ struct NewPost: View {
     @EnvironmentObject var mainViewModel: MainViewModel
 
     @Binding var isModal: Bool
+    
+    @State var image: Image? = nil
+    
+    @State var showCaptureImageView: Bool = false
+
+    @State var imageURL: String = ""
 
     var body: some View {
         ZStack {
+            
+
+            
 
             VStack(spacing: 5) {
 
 
-                TextField("meme", text: $content)
+                TextView(text: $content)
+                    .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity, minHeight: 50, idealHeight: 50, maxHeight: 100)
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color(UIColor(white: 1.0, alpha: 0.7))))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.3), lineWidth: 1)
+                    )
+
+
+
+                HStack {
+                    Spacer()
+
+                    Button(action: {
+                        self.showCaptureImageView.toggle()
+                    }) {
+                        Image(systemName: (image==nil ? "photo.fill" : "xmark"))
+                            .font(.system(size: 24))
+                            .foregroundColor(Color("ColorMeta"))
+                    }
+                }.padding(.top, 10)
+                    .padding(.trailing, 10)
+                
+
+            
+                image?.resizable()
+                    .scaledToFit()
+                    .frame(width: 250, height: 150)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.white, lineWidth: 1))
+                    .shadow(radius: 2, x: 0.5, y: 2.5)
 
 
                 Button(action: {
-                    self.mainViewModel.makePost(imageuuid: nil, reply_to: nil, contents: self.content, subject: nil) { success in
+                    var imageuuid: String? = nil
+                    if(self.imageURL != "") {
+                        imageuuid = UUID().uuidString
+                        self.mainViewModel.uploadImage(imageURL: self.imageURL, uuid: imageuuid!)
+                    }
+                    
+                    self.mainViewModel.makePost(imageuuid: imageuuid, reply_to: nil, contents: self.content, subject: nil) { success in
                         if(success) {
                             self.mainViewModel.fetchMyPosts(number_of_posts: 40, page_number: 2)
                             self.isModal = false
@@ -47,12 +92,17 @@ struct NewPost: View {
                 .padding(.top, 60)
             .background(Image("Background"))
                 .onDisappear(perform: cleanup)
+            .padding(.horizontal, 30)
         
             VStack {
                 Spinner(items: mainViewModel.subjects)
-                    .padding(.top, 15)
+                    .padding(.top, 20)
                 Spacer()
 
+            }
+            
+            if (showCaptureImageView) {
+                CaptureImageView(isShown: $showCaptureImageView, image: $image, imageURL: $imageURL)
             }
 
         }
