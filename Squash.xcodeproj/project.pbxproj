@@ -15,6 +15,9 @@
 		8B0F857A23E3B7F800A0A29D /* Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F857923E3B7F800A0A29D /* Hidden.swift */; };
 		8B1BCDB423EB80E5009237A5 /* CaptureImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1BCDB323EB80E5009237A5 /* CaptureImageView.swift */; };
 		8B1BCDB623EB810F009237A5 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1BCDB523EB810F009237A5 /* Coordinator.swift */; };
+		8B1BCDB823ECD385009237A5 /* KeyboardGuardian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1BCDB723ECD385009237A5 /* KeyboardGuardian.swift */; };
+		8B1BCDBA23ECD3C0009237A5 /* GeometryGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1BCDB923ECD3C0009237A5 /* GeometryGetter.swift */; };
+		8B1BCDBC23ECD9E5009237A5 /* KeyboardHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1BCDBB23ECD9E5009237A5 /* KeyboardHost.swift */; };
 		8B3DC08123D95A9100131AB7 /* PhotoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3DC08023D95A9100131AB7 /* PhotoLoader.swift */; };
 		8B3DC08323DA59F800131AB7 /* FirebaseImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3DC08223DA59F800131AB7 /* FirebaseImage.swift */; };
 		8B5D9BBE23CD1C270045B8D4 /* PostsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5D9BBD23CD1C270045B8D4 /* PostsList.swift */; };
@@ -81,6 +84,9 @@
 		8B0F857923E3B7F800A0A29D /* Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hidden.swift; sourceTree = "<group>"; };
 		8B1BCDB323EB80E5009237A5 /* CaptureImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureImageView.swift; sourceTree = "<group>"; };
 		8B1BCDB523EB810F009237A5 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		8B1BCDB723ECD385009237A5 /* KeyboardGuardian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardGuardian.swift; sourceTree = "<group>"; };
+		8B1BCDB923ECD3C0009237A5 /* GeometryGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryGetter.swift; sourceTree = "<group>"; };
+		8B1BCDBB23ECD9E5009237A5 /* KeyboardHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHost.swift; sourceTree = "<group>"; };
 		8B3DC08023D95A9100131AB7 /* PhotoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLoader.swift; sourceTree = "<group>"; };
 		8B3DC08223DA59F800131AB7 /* FirebaseImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseImage.swift; sourceTree = "<group>"; };
 		8B5D9BBD23CD1C270045B8D4 /* PostsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsList.swift; sourceTree = "<group>"; };
@@ -218,6 +224,9 @@
 				8B0F857923E3B7F800A0A29D /* Hidden.swift */,
 				8B1BCDB323EB80E5009237A5 /* CaptureImageView.swift */,
 				8B1BCDB523EB810F009237A5 /* Coordinator.swift */,
+				8B1BCDB723ECD385009237A5 /* KeyboardGuardian.swift */,
+				8B1BCDB923ECD3C0009237A5 /* GeometryGetter.swift */,
+				8B1BCDBB23ECD9E5009237A5 /* KeyboardHost.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -583,10 +592,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B0F857023E35AF900A0A29D /* UserData.swift in Sources */,
+				8B1BCDB823ECD385009237A5 /* KeyboardGuardian.swift in Sources */,
 				8B6A314623CC2672004C34DD /* Squash.xcdatamodeld in Sources */,
 				8B1BCDB623EB810F009237A5 /* Coordinator.swift in Sources */,
 				8B700F4723DF785000E33653 /* TextView.swift in Sources */,
 				8B5D9BBE23CD1C270045B8D4 /* PostsList.swift in Sources */,
+				8B1BCDBA23ECD3C0009237A5 /* GeometryGetter.swift in Sources */,
 				8B6A317C23CC34B0004C34DD /* Listing.swift in Sources */,
 				8B6A314123CC2672004C34DD /* AppDelegate.swift in Sources */,
 				8BEC48B823D7D0E2001CF80A /* NewPost.swift in Sources */,
@@ -606,6 +617,7 @@
 				8B0F857623E35CAA00A0A29D /* UserDataListing.swift in Sources */,
 				8B3DC08123D95A9100131AB7 /* PhotoLoader.swift in Sources */,
 				8B700F4323DEC90300E33653 /* Subject.swift in Sources */,
+				8B1BCDBC23ECD9E5009237A5 /* KeyboardHost.swift in Sources */,
 				8B0F857A23E3B7F800A0A29D /* Hidden.swift in Sources */,
 				8B6A314323CC2672004C34DD /* SceneDelegate.swift in Sources */,
 				8B0F3F0923DA70C800483B9D /* SVGImage.swift in Sources */,

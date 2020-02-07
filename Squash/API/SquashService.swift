@@ -253,7 +253,7 @@ class SquashService {
         let json: [String: Any] =
             [
                 "imageuuid": String(imageuuid ?? ""),
-                "reply_to": reply_to,
+                "reply_to": reply_to == nil ? "" : String(Int(reply_to!)),
                 "opuuid": opuuid,
                 "contents": contents,
                 "subject": String(subject ?? ""),
