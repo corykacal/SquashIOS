@@ -139,17 +139,24 @@ struct PostRow: View {
                         .opacity(0.6)
                         .foregroundColor(self.post.decision==true ? Color.green : Color("ColorMeta"))
                         .onTapGesture {
-                            if(self.decision==true) {
+                            if(self.post.decision==true) {
+                                self.post.up-=1
                                 self.post.decision = nil
                                 self.mainViewModel.makeDecision(decision: nil, post_number: self.post.id)
                             } else {
+                                if(self.post.decision==false) {
+                                     self.post.down-=1
+                                     self.post.up+=1
+                                 } else {
+                                     self.post.up+=1
+                                 }
                                 self.post.decision = true
 
                                 self.mainViewModel.makeDecision(decision: true, post_number: self.post.id)
                             }
                         }
-                    Text(String(self.post.points))
-                        .foregroundColor((self.post.points<0) ? Color.red : Color.green)
+                    Text(String((self.post.up - self.post.down)))
+                        .foregroundColor(((self.post.up - self.post.down)<0) ? Color.red : Color.green)
                         .padding(.trailing, 1)
                     Image(systemName: "chevron.down")
                         .font(.system(size: 32, weight: .medium))
@@ -157,11 +164,17 @@ struct PostRow: View {
                         .foregroundColor(self.post.decision==false ? Color.red : Color("ColorMeta"))
                         .onTapGesture {
 
-                            if(self.decision==false) {
+                            if(self.post.decision==false) {
+                                self.post.down-=1
                                 self.post.decision = nil
-                                
                                 self.mainViewModel.makeDecision(decision: nil, post_number: self.post.id)
                             } else {
+                                if(self.post.decision==true) {
+                                    self.post.down+=1
+                                    self.post.up-=1
+                                } else {
+                                    self.post.down+=1
+                                }
                                 self.post.decision = false
 
                                 self.mainViewModel.makeDecision(decision: false, post_number: self.post.id)

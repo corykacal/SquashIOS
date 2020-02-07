@@ -17,6 +17,9 @@ struct CommentRow: View {
     @ObservedObject var mainViewModel: MainViewModel
     
     @State var decision: Bool? = nil
+    
+    @State var up: Int = 0
+    @State var down: Int = 0
 
     private func getTimeSince(date: Date) -> String {
         let seconds = Int(abs(date.timeIntervalSinceNow))
@@ -108,15 +111,22 @@ struct CommentRow: View {
                            .onTapGesture {
                                 if(self.decision==true) {
                                    self.decision = nil
+                                    self.up -= 1
                                    self.mainViewModel.makeDecision(decision: nil, post_number: self.post.id)
                                } else {
+                                    if(self.decision==false) {
+                                        self.down-=1
+                                        self.up+=1
+                                    } else {
+                                        self.up+=1
+                                    }
                                    self.decision = true
-
+                                
                                    self.mainViewModel.makeDecision(decision: true, post_number: self.post.id)
                                }
                            }
-                       Text(String(self.post.points))
-                           .foregroundColor((self.post.points<0) ? Color.red : Color.green)
+                       Text(String((self.up - self.down)))
+                           .foregroundColor(((self.up - self.down)<0) ? Color.red : Color.green)
                            .padding(.trailing, 1)
                        Image(systemName: "chevron.down")
                            .font(.system(size: 32, weight: .medium))
@@ -126,9 +136,15 @@ struct CommentRow: View {
 
                                if(self.decision==false) {
                                    self.decision = nil
-                                   
+                                self.down-=1
                                    self.mainViewModel.makeDecision(decision: nil, post_number: self.post.id)
                                } else {
+                                if(self.decision==true) {
+                                    self.down+=1
+                                    self.up-=1
+                                } else {
+                                    self.down+=1
+                                }
                                    self.decision = false
 
                                    self.mainViewModel.makeDecision(decision: false, post_number: self.post.id)
@@ -153,6 +169,8 @@ struct CommentRow: View {
         
         .onAppear(perform: {
             self.decision = self.post.decision
+            self.down = self.post.down
+            self.up = self.post.up
         })
 
         }

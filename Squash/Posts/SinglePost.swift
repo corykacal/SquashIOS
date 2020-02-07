@@ -70,7 +70,13 @@ struct SinglePost: View {
                 
                         Button(action: {
                             //send comment post
-                            self.mainViewModel.makePost(imageuuid: nil, reply_to: self.post.id, contents: self.content, subject: nil) {_ in
+                            
+                            self.mainViewModel.makePost(imageuuid: nil, reply_to: self.post.id, contents: self.content, subject: nil) {success in
+                                if(success) {
+                                    self.content = ""
+                                    UIApplication.shared.keyWindow?.endEditing(true)
+                                    self.mainViewModel.fetchComments(postNumber: self.post.id, latitude: 4, longitude: 4)
+                                }
                             }
                         }) {
                             Image(systemName: "arrowtriangle.right.square.fill")

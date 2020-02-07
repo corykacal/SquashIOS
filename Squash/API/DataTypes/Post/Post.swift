@@ -16,9 +16,10 @@ struct Post: Identifiable {
     var subject: String?
     var imageuuid: String?
     var commentCount: Int?
-    var points: Int
     var decision: Bool?
     var color: Int?
+    var up: Int
+    var down: Int
     var veggie_url: String?
     var veggie_color: Int?
 }
@@ -53,9 +54,8 @@ extension Post: Decodable {
         imageuuid = try values.decodeIfPresent(String.self, forKey: .imageuuid)
         subject = try values.decodeIfPresent(String.self, forKey: .subject)
         commentCount = try values.decodeIfPresent(Int.self, forKey: .commentCount)
-        let up = try values.decode(Int.self, forKey: .up)
-        let down = try values.decode(Int.self, forKey: .down)
-        points = up-down
+        up = try values.decode(Int.self, forKey: .up)
+        down = try values.decode(Int.self, forKey: .down)
         decision = try values.decodeIfPresent(Bool.self, forKey: .decision)
         color = try values.decodeIfPresent(Int.self, forKey: .color)
         veggie_url = try values.decodeIfPresent(String.self, forKey: .veggie_url)
