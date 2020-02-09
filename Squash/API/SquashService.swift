@@ -56,6 +56,43 @@ class SquashService {
         }.resume()
     }
     
+    func getHotPosts(for opuuid: String, number_of_posts: Int, page_number: Int, subject: String, latitude: Double, longitude: Double, completion: @escaping (Result<[Post], Error>) -> Void) {
+        
+        
+        var components = URLComponents()
+        components.scheme = "http"
+        components.host = self.base_url
+        components.port = 5000
+        components.path = "/api/hot/"
+        components.queryItems = [
+            URLQueryItem(name: "opuuid", value: opuuid),
+            URLQueryItem(name: "number_of_posts", value: String(number_of_posts)),
+            URLQueryItem(name: "page_number", value: String(page_number)),
+            URLQueryItem(name: "subject", value: subject),
+            URLQueryItem(name: "latitude", value: String(latitude)),
+            URLQueryItem(name: "longitude", value: String(longitude)),
+        ]
+        
+        guard let url = components.url else {
+            preconditionFailure("shit broke")
+        }
+        
+        session.dataTask(with: url) { [weak self] data, _, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                do {
+                    let data = data ?? Data()
+                    let response = try self?.decoder.decode(Listing.self, from: data)
+                    completion(.success(response?.posts ?? []))
+                } catch {
+                    completion(.failure(error))
+                }
+            }
+        }.resume()
+    }
+
+    
     func getUserPosts(for opuuid: String, number_of_posts: Int, page_number: Int, completion: @escaping (Result<[Post], Error>) -> Void) {
         
         var components = URLComponents()
@@ -87,6 +124,9 @@ class SquashService {
             }
         }.resume()
     }
+    
+    
+    
 
     
     func getUserData(for opuuid: String, completion: @escaping (Result<[UserData], Error>) -> Void) {

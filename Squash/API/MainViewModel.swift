@@ -90,6 +90,23 @@ class MainViewModel: ObservableObject {
         }
     }
     
+    func fetchHotPosts(number_of_posts: Int, page_number: Int, completion: @escaping (Bool) -> Void) {
+        service.getHotPosts(for: getUid()!, number_of_posts: number_of_posts, page_number: page_number, subject: "All", latitude: 30.285610, longitude: -97.737204) { [weak self] result in
+            DispatchQueue.main.sync {
+                switch result {
+                case .success(let posts):
+                    print("setting post now!!!!")
+                    self?.posts = posts
+                    completion(true)
+                case .failure:
+                    self?.posts = []
+                    completion(false)
+                }
+            }
+        }
+    }
+
+    
     func fetchComments(postNumber: Int, latitude: Double, longitude: Double) {
         service.getComments(for: getUid()!, postNumber: postNumber, latitude: latitude, longitude: longitude) { [weak self] result in
             DispatchQueue.main.async {
