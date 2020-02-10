@@ -43,9 +43,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
                 
                 let mainViewModel = MainViewModel(service: service, user: authResult)
-                mainViewModel.fetchPosts(number_of_posts: 10, page_number: 1) { success in
+                mainViewModel.fetchPosts(number_of_posts: 20, page_number: 1) { success in
                 
                 }
+                mainViewModel.fetchHotPosts(number_of_posts: 20, page_number: 1) { success in
+                
+                }
+
                 mainViewModel.fetchSubjects()
                 mainViewModel.fetchUserData()
 

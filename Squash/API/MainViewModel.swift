@@ -19,6 +19,7 @@ class MainViewModel: ObservableObject {
     
     @Published var showFullScreen = false
     @Published var posts = [Post(contents: "", id: 0, timestamp: Date(), subject: nil, imageuuid: nil, commentCount: 0, decision: nil, up: 0, down: 0)]
+    @Published var hotPosts = [Post(contents: "", id: 0, timestamp: Date(), subject: nil, imageuuid: nil, commentCount: 0, decision: nil, up: 0, down: 0)]
     @Published var comments = [Post]()
     @Published var userPosts = [Post(contents: "", id: 0, timestamp: Date(), subject: nil, imageuuid: nil, commentCount: 0, decision: nil, up: 0, down: 0)]
     @Published var user = Auth.auth().currentUser
@@ -83,7 +84,6 @@ class MainViewModel: ObservableObject {
                     self?.posts = posts
                     completion(true)
                 case .failure:
-                    self?.posts = []
                     completion(false)
                 }
             }
@@ -95,11 +95,12 @@ class MainViewModel: ObservableObject {
             DispatchQueue.main.sync {
                 switch result {
                 case .success(let posts):
-                    print("setting post now!!!!")
-                    self?.posts = posts
+                    print("setting hot post now")
+                    print(self?.hotPosts.capacity)
+                    self?.hotPosts = posts
+                    print(self?.hotPosts.capacity)
                     completion(true)
                 case .failure:
-                    self?.posts = []
                     completion(false)
                 }
             }

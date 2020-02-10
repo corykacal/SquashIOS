@@ -57,28 +57,64 @@ struct PostsList: View {
             //ZStack for the floating action button
             NavigationView {
                 List {
-                    ForEach(mainViewModel.posts.indices, id: \.self) { index in
-                        ZStack {
-                            PostRow(post: self.$mainViewModel.posts[index], cropped: true).environmentObject(self.mainViewModel)
+                    if self.selectorIndex == 0 {
+                        ForEach(mainViewModel.posts.indices, id: \.self) { index in
+                            ForEachBuilder {
+                                if self.mainViewModel.posts.indices.contains(index) {
 
-                            NavigationLink(destination: SinglePost(post: self.$mainViewModel.posts[index], mainViewModel: self.mainViewModel, isSingle: self.$isSingle).environmentObject(self.mainViewModel)) {
-                                EmptyView()
-                            }.buttonStyle(PlainButtonStyle())
-                        }.onAppear(perform: {
-                            //TODO bug with this index otu of range for some reason
-                            //self.listItemAppears(self.mainViewModel.posts[index])
-                        })
-                        .listRowInsets(.init(top: 8, leading: 10, bottom: 8, trailing: 10))
-                        
-                    }.listRowBackground(Color("ColorBackground"))
-                }.pullToRefresh(isShowing: $isShowing) {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        self.mainViewModel.fetchPosts(number_of_posts: self.pageSize, page_number: 1) { success in
-                            if(success) {
-                                self.page = 2
+                                ZStack {
+                                    PostRow(post: self.$mainViewModel.posts[index], cropped: true).environmentObject(self.mainViewModel)
+
+                                    NavigationLink(destination: SinglePost(post: self.$mainViewModel.posts[index], mainViewModel: self.mainViewModel, isSingle: self.$isSingle).environmentObject(self.mainViewModel)) {
+                                        EmptyView()
+                                    }.buttonStyle(PlainButtonStyle())
+                                }.onAppear(perform: {
+                                    //TODO bug with this index otu of range for some reason
+                                    //self.listItemAppears(self.mainViewModel.posts[index])
+                                })
+                                .listRowInsets(.init(top: 8, leading: 10, bottom: 8, trailing: 10))
+                                }
                             }
-                            self.isShowing = false
+                        }.listRowBackground(Color("ColorBackground"))
+                    } else {
+                        ForEach(mainViewModel.hotPosts.indices, id: \.self) { index in
+                            ForEachBuilder {
+                                if self.mainViewModel.hotPosts.indices.contains(index) {
+                                ZStack {
+                                    PostRow(post: self.$mainViewModel.hotPosts[index], cropped: true).environmentObject(self.mainViewModel)
+
+                                    NavigationLink(destination: SinglePost(post: self.$mainViewModel.hotPosts[index], mainViewModel: self.mainViewModel, isSingle: self.$isSingle).environmentObject(self.mainViewModel)) {
+                                        EmptyView()
+                                    }.buttonStyle(PlainButtonStyle())
+                                }.onAppear(perform: {
+                                    //TODO bug with this index otu of range for some reason
+                                    //self.listItemAppears(self.mainViewModel.posts[index])
+                                })
+                                .listRowInsets(.init(top: 8, leading: 10, bottom: 8, trailing: 10))
+                                }
+                            }
+                        }.listRowBackground(Color("ColorBackground"))
+                    }
+                }.pullToRefresh(isShowing: $isShowing) {
+                    if self.selectorIndex == 0 {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            self.mainViewModel.fetchPosts(number_of_posts: self.pageSize, page_number: 1) { success in
+                                if(success) {
+                                    self.page = 2
+                                }
+                                self.isShowing = false
+                            }
                         }
+                    } else {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            self.mainViewModel.fetchHotPosts(number_of_posts: self.pageSize+30, page_number: 1) { success in
+                                if(success) {
+                                    self.page = 2
+                                }
+                                self.isShowing = false
+                            }
+                        }
+
                     }
                 }
                 .padding(.top, 26)
