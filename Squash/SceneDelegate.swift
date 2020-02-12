@@ -10,6 +10,8 @@ import UIKit
 import SwiftUI
 import Firebase
 import MapKit
+import CoreLocation
+
 
 
 class HostingController: UIHostingController<ContentView> {
@@ -41,20 +43,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 UITableView.appearance().backgroundColor = UIColor(named: "ColorBackground")
                 UITabBar.appearance().barTintColor = UIColor.systemYellow
 
-                
-                let mainViewModel = MainViewModel(service: service, user: authResult)
-                mainViewModel.fetchPosts(number_of_posts: 20, page_number: 1) { success in
-                
-                }
-                mainViewModel.fetchHotPosts(number_of_posts: 20, page_number: 1) { success in
-                
-                }
-
-                mainViewModel.fetchSubjects()
-                mainViewModel.fetchUserData()
+                let locationManager = LocationManager()
+                let mainViewModel = MainViewModel(service: service, user: authResult, locationManager: locationManager)
 
 
-                window.rootViewController = UIHostingController(rootView: ContentView(mainViewModel: mainViewModel))
+
+                window.rootViewController = UIHostingController(rootView: ContentView(mainViewModel: mainViewModel, locationManager: locationManager))
                 self.window = window
                 window.makeKeyAndVisible()
             }

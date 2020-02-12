@@ -21,6 +21,8 @@
 		8B1BCDBE23F1FC19009237A5 /* ForEachBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1BCDBD23F1FC19009237A5 /* ForEachBuilder.swift */; };
 		8B3DC08123D95A9100131AB7 /* PhotoLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3DC08023D95A9100131AB7 /* PhotoLoader.swift */; };
 		8B3DC08323DA59F800131AB7 /* FirebaseImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3DC08223DA59F800131AB7 /* FirebaseImage.swift */; };
+		8B44113423F3975C001F3BAD /* GetUserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44113323F3975C001F3BAD /* GetUserLocation.swift */; };
+		8B44113623F39C4C001F3BAD /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B44113523F39C4C001F3BAD /* LocationManager.swift */; };
 		8B5D9BBE23CD1C270045B8D4 /* PostsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5D9BBD23CD1C270045B8D4 /* PostsList.swift */; };
 		8B5D9BC223CD557C0045B8D4 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5D9BC123CD557C0045B8D4 /* CardView.swift */; };
 		8B6A314123CC2672004C34DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6A314023CC2672004C34DD /* AppDelegate.swift */; };
@@ -91,6 +93,8 @@
 		8B1BCDBD23F1FC19009237A5 /* ForEachBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEachBuilder.swift; sourceTree = "<group>"; };
 		8B3DC08023D95A9100131AB7 /* PhotoLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLoader.swift; sourceTree = "<group>"; };
 		8B3DC08223DA59F800131AB7 /* FirebaseImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseImage.swift; sourceTree = "<group>"; };
+		8B44113323F3975C001F3BAD /* GetUserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserLocation.swift; sourceTree = "<group>"; };
+		8B44113523F39C4C001F3BAD /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		8B5D9BBD23CD1C270045B8D4 /* PostsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsList.swift; sourceTree = "<group>"; };
 		8B5D9BBF23CD21680045B8D4 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		8B5D9BC123CD557C0045B8D4 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -265,6 +269,7 @@
 				8B6A317323CC2825004C34DD /* Posts */,
 				8B6A314723CC2672004C34DD /* ContentView.swift */,
 				8B6A314223CC2672004C34DD /* SceneDelegate.swift */,
+				8B44113323F3975C001F3BAD /* GetUserLocation.swift */,
 				8B6A314023CC2672004C34DD /* AppDelegate.swift */,
 				8BEC48B923D7F1D3001CF80A /* FullScreen.swift */,
 				8B6A314923CC2676004C34DD /* Assets.xcassets */,
@@ -322,6 +327,7 @@
 				8B3DC07F23D95A6500131AB7 /* Photos */,
 				8B6A317D23CC35F1004C34DD /* DataTypes */,
 				8B6A317E23CC360D004C34DD /* SquashService.swift */,
+				8B44113523F39C4C001F3BAD /* LocationManager.swift */,
 				8B6A318023CC3ECC004C34DD /* MainViewModel.swift */,
 			);
 			path = API;
@@ -602,6 +608,7 @@
 				8B5D9BBE23CD1C270045B8D4 /* PostsList.swift in Sources */,
 				8B1BCDBA23ECD3C0009237A5 /* GeometryGetter.swift in Sources */,
 				8B6A317C23CC34B0004C34DD /* Listing.swift in Sources */,
+				8B44113623F39C4C001F3BAD /* LocationManager.swift in Sources */,
 				8B6A314123CC2672004C34DD /* AppDelegate.swift in Sources */,
 				8BEC48B823D7D0E2001CF80A /* NewPost.swift in Sources */,
 				8BEC48B523D7C9D9001CF80A /* CommentRow.swift in Sources */,
@@ -612,6 +619,7 @@
 				8B6A318123CC3ECC004C34DD /* MainViewModel.swift in Sources */,
 				8B6A317A23CC28B4004C34DD /* Post.swift in Sources */,
 				8B3DC08323DA59F800131AB7 /* FirebaseImage.swift in Sources */,
+				8B44113423F3975C001F3BAD /* GetUserLocation.swift in Sources */,
 				8BEC48BA23D7F1D3001CF80A /* FullScreen.swift in Sources */,
 				8B6A314823CC2672004C34DD /* ContentView.swift in Sources */,
 				8B0F856E23E2A98900A0A29D /* Profile.swift in Sources */,

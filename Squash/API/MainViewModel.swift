@@ -11,11 +11,13 @@ import Combine
 import SwiftUI
 import Firebase
 import FirebaseStorage
+import CoreLocation
 
 
 class MainViewModel: ObservableObject {
     let service: SquashService
-    
+
+    @ObservedObject var locationManager: LocationManager
     
     @Published var showFullScreen = false
     @Published var posts = [Post(contents: "", id: 0, timestamp: Date(), subject: nil, imageuuid: nil, commentCount: 0, decision: nil, up: 0, down: 0)]
@@ -26,13 +28,22 @@ class MainViewModel: ObservableObject {
     @Published var subjects = [Subject(subject: "All", color: nil)]
     @Published var userData = UserData(totalUp: 0, totalDown: 0, postUp: 0, postDown: 0, commentUp: 0, commentDown: 0, postWithoutImage: 0, postWithImage: 0, totalComments: 0, totalPosts: 0, pointsGiven: 0, pointsTaken: 0)
         
-    init(service: SquashService, user: User?) {
+    init(service: SquashService, user: User?, locationManager: LocationManager) {
         self.service = service
         self.user = user
+        self.locationManager = locationManager
     }
     
     func getUid() -> String? {
         return self.user?.uid
+    }
+    
+    private func getLatitude() -> Double {
+        return self.locationManager.lastLocation!.coordinate.latitude
+    }
+    
+    private func getLongitude() -> Double {
+        return self.locationManager.lastLocation!.coordinate.longitude
     }
     
     func uploadImage(imageURL: String, uuid: String) {
@@ -76,7 +87,8 @@ class MainViewModel: ObservableObject {
     }
     
     func fetchPosts(number_of_posts: Int, page_number: Int, completion: @escaping (Bool) -> Void) {
-        service.getRecentPosts(for: getUid()!, number_of_posts: number_of_posts, page_number: page_number, subject: "All", latitude: 30.285610, longitude: -97.737204) { [weak self] result in
+        print(self.locationManager.lastLocation)
+        service.getRecentPosts(for: getUid()!, number_of_posts: number_of_posts, page_number: page_number, subject: "All", latitude: getLatitude(), longitude: getLongitude()) { [weak self] result in
             DispatchQueue.main.sync {
                 switch result {
                 case .success(let posts):
@@ -91,7 +103,7 @@ class MainViewModel: ObservableObject {
     }
     
     func fetchHotPosts(number_of_posts: Int, page_number: Int, completion: @escaping (Bool) -> Void) {
-        service.getHotPosts(for: getUid()!, number_of_posts: number_of_posts, page_number: page_number, subject: "All", latitude: 30.285610, longitude: -97.737204) { [weak self] result in
+        service.getHotPosts(for: getUid()!, number_of_posts: number_of_posts, page_number: page_number, subject: "All", latitude: getLatitude(), longitude: getLongitude()) { [weak self] result in
             DispatchQueue.main.sync {
                 switch result {
                 case .success(let posts):
@@ -126,7 +138,7 @@ class MainViewModel: ObservableObject {
     }
     
     func fetchSubjects() {
-        service.getSubjects(for: getUid()!, latitude: 30.285610, longitude: -97.737204) { [weak self] result in
+        service.getSubjects(for: getUid()!, latitude: getLatitude(), longitude: getLongitude()) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let subjects):
@@ -153,7 +165,7 @@ class MainViewModel: ObservableObject {
     }
     
     func makePost(imageuuid: String?, reply_to: Int?, contents: String, subject: String?, completion: @escaping (Bool) -> Void) {
-        service.makePost(for: getUid()!, imageuuid: imageuuid, reply_to: reply_to, contents: contents, subject: subject, latitude: 30.285610, longitude: -97.737204) { [weak self] result in
+        service.makePost(for: getUid()!, imageuuid: imageuuid, reply_to: reply_to, contents: contents, subject: subject, latitude: getLatitude(), longitude: getLongitude()) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
@@ -169,7 +181,7 @@ class MainViewModel: ObservableObject {
     
     func addNewPage(nextPage: Int, numberPosts: Int) {
         print("fdsafdsafds")
-        service.getRecentPosts(for: getUid()!, number_of_posts: numberPosts, page_number: nextPage, subject: "All", latitude: 30.285610, longitude: -97.737204) { [weak self] result in
+        service.getRecentPosts(for: getUid()!, number_of_posts: numberPosts, page_number: nextPage, subject: "All", latitude: getLatitude(), longitude: getLongitude()) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let posts):

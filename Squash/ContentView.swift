@@ -7,6 +7,9 @@
 //
 
 import SwiftUI
+import Foundation
+import CoreLocation
+import Combine
 
 struct ContentView: View {
     @State private var selection = 0
@@ -14,11 +17,21 @@ struct ContentView: View {
     @ObservedObject var mainViewModel: MainViewModel
 
     
+    @ObservedObject var locationManager: LocationManager
+
     
  
     var body: some View {
+
         ZStack {
-            
+            if(locationManager.statusString != "authorizedWhenInUse") {
+                GetUserLocation()
+            } else if (locationManager.lastLocation == nil || locationManager.lastLocation?.coordinate == nil) {
+                Color.white
+                .onAppear(perform: {
+                    self.locationManager.startUpdating()
+                })
+            } else {
             Color.yellow
                 .edgesIgnoringSafeArea(.all)
             
@@ -46,7 +59,20 @@ struct ContentView: View {
         
             }.foregroundColor(Color.black)
                 .accentColor(Color.black)
+                .onAppear(perform: {                    
+                    self.mainViewModel.fetchPosts(number_of_posts: 20, page_number: 1) { success in
+                    
+                    }
+                    self.mainViewModel.fetchHotPosts(number_of_posts: 20, page_number: 1) { success in
+                    }
+
+                    self.mainViewModel.fetchSubjects()
+                    self.mainViewModel.fetchUserData()
+                })
+            
+
         }
+    }
     }
 }
 
